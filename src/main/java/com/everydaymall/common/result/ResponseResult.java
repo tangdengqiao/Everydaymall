@@ -2,6 +2,12 @@ package com.everydaymall.common.result;
 
 import java.io.Serializable;
 
+/**
+ * 返回页面工具类
+ * @author tang
+ *
+ * @param <T>
+ */
 public class ResponseResult<T> implements Serializable{
 
 	private static final long serialVersionUID = 1027568318688636306L;

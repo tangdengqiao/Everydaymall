@@ -6,6 +6,11 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Properties;
 
+/**
+ * 分页工具类
+ * @author tang
+ *
+ */
 @Configuration
 public class PageHelperConfig {
 	@Bean

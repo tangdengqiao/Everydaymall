@@ -6,7 +6,7 @@ import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 
 /**
- * 用于shiro权限认证的密码工具类
+ * 用于shiro权限的密码工具类
  */
 public class PasswordHelper {
 

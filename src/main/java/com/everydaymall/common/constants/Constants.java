@@ -1,5 +1,9 @@
 package com.everydaymall.common.constants;
-
+/**
+ * 常用属性赋值工具类
+ * @author tang
+ *
+ */
 public class Constants {
 	//方法失败调用
     public static final int SAVEREGISTER_SUCESS = 0;
