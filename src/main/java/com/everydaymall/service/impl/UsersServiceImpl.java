@@ -14,28 +14,28 @@ import com.everydaymall.utils.DateUtil;
 import com.everydaymall.utils.StringUtils;
 
 @Service
-public class UsersServiceImpl implements IUsesService{
-	
+public class UsersServiceImpl implements IUsesService {
+
 	private Logger LOGGER = LoggerFactory.getLogger(UsersServiceImpl.class);
-	
+
 	@Autowired
 	private UsersMapper usersMapper;
-	
+
 	/**
-	 *注册
+	 * 注册
 	 */
 	@Override
 	public int saveRegister(Users users) {
 		try {
-	        String salt = PasswordHelper.createSalt();
-	        String credentials = PasswordHelper.createCredentials(users.getUserPwd(), salt);
-	        users.setSalt(salt);
-	        users.setIdUser(StringUtils.getInstance().randomString(Constants.SUM_20));
-	        users.setUserPwd(credentials);
-	        users.setUserCreatetime(DateUtil.getCurrentTime());
-	        users.setUserMoney(Constants.USERMONEY);
-	        users.setIdIdentity(Constants.USERS_IDIDENTITY1);
-	        users.setUserState(Constants.USERS_STATE);
+			String salt = PasswordHelper.createSalt();
+			String credentials = PasswordHelper.createCredentials(users.getUserPwd(), salt);
+			users.setSalt(salt);
+			users.setIdUser(StringUtils.getInstance().randomString(Constants.SUM_20));
+			users.setUserPwd(credentials);
+			users.setUserCreatetime(DateUtil.getCurrentTime());
+			users.setUserMoney(Constants.USERMONEY);
+			users.setIdIdentity(Constants.USERS_IDIDENTITY1);
+			users.setUserState(Constants.USERS_STATE);
 			int insertSelective = usersMapper.insertSelective(users);
 			return insertSelective;
 		} catch (Exception e) {
@@ -43,7 +43,7 @@ public class UsersServiceImpl implements IUsesService{
 			return Constants.SAVEREGISTER_SUCESS;
 		}
 	}
-	
+
 	/**
 	 * 根据用户名查询用户
 	 */
@@ -56,7 +56,7 @@ public class UsersServiceImpl implements IUsesService{
 			return null;
 		}
 	}
-	
+
 	/**
 	 * 根据用户名,密码查询用户
 	 */
@@ -69,7 +69,5 @@ public class UsersServiceImpl implements IUsesService{
 			return null;
 		}
 	}
-	
-	
 
 }

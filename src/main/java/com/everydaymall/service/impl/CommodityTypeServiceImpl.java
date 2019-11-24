@@ -13,15 +13,16 @@ import com.everydaymall.mapper.CommodityTypeMapper;
 import com.everydaymall.service.ICommodityTypeService;
 
 @Service
-public class CommodityTypeServiceImpl implements ICommodityTypeService{
-	
+public class CommodityTypeServiceImpl implements ICommodityTypeService {
+
 	private Logger LOGGER = LoggerFactory.getLogger(CommodityTypeServiceImpl.class);
-	
+
 	@Autowired
 	private CommodityTypeMapper commodityTypeMapper;
-	
+
 	/**
 	 * 首页获取3个商品类型
+	 * 
 	 * @return
 	 */
 	@Override

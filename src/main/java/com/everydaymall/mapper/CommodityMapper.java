@@ -7,24 +7,23 @@ import org.apache.ibatis.annotations.Param;
 import com.everydaymall.entity.Commodity;
 
 public interface CommodityMapper {
-    int deleteByPrimaryKey(Integer idIndex);
+	int deleteByPrimaryKey(Integer idIndex);
 
-    int insert(Commodity record);
+	int insert(Commodity record);
 
-    int insertSelective(Commodity record);
+	int insertSelective(Commodity record);
 
-    Commodity selectByPrimaryKey(Integer idIndex);
+	Commodity selectByPrimaryKey(Integer idIndex);
 
-    int updateByPrimaryKeySelective(Commodity record);
+	int updateByPrimaryKeySelective(Commodity record);
 
-    int updateByPrimaryKey(Commodity record);
-    
-    /**
-     * 首页展示商品
-     * @param currentPage
-     * @param pageSize
-     * @param commodity
-     * @return
-     */
-    List<Commodity> listCommodity(@Param(value="commodityName")String commodityName);
+	int updateByPrimaryKey(Commodity record);
+
+	/**
+	 * 首页展示商品
+	 * 
+	 * @param commodityName
+	 * @return
+	 */
+	List<Commodity> listCommodity(@Param(value = "commodityName") String commodityName);
 }

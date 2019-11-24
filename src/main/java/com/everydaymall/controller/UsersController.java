@@ -48,7 +48,7 @@ public class UsersController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseResult<Object> register(Users users,
-			@RequestParam(value = "file", required = false) MultipartFile file) throws Exception{
+			@RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
 		if (users != null && !file.isEmpty()) {
 			String imagePath = "";
 			if (!file.isEmpty()) {
@@ -57,15 +57,15 @@ public class UsersController {
 			users.setUserHeadportrait(imagePath);
 			if (usesService.selectByUsername(users.getUserName()) == null) {
 				if (usesService.saveRegister(users) > Constants.SAVEREGISTER_SUCESS) {
-					return new ResponseResult<Object>(200,"注册成功");
+					return new ResponseResult<Object>(200, "注册成功");
 				} else {
-					return new ResponseResult<Object>(500,"注册失败");
+					return new ResponseResult<Object>(500, "注册失败");
 				}
 			} else {
-				return new ResponseResult<Object>(500,"该账户名已被占用");
+				return new ResponseResult<Object>(500, "该账户名已被占用");
 			}
 		} else {
-			return new ResponseResult<Object>(500,"填充的数据或者文件为空");
+			return new ResponseResult<Object>(500, "填充的数据或者文件为空");
 		}
 	}
 
@@ -88,7 +88,7 @@ public class UsersController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseResult<Object> login(Users users, HttpServletRequest request) throws Exception{
+	public ResponseResult<Object> login(Users users, HttpServletRequest request) throws Exception {
 		if (users.getUserPwd() != null && !(users.getUserPwd().equals("")) && users.getUserName() != null
 				&& !(users.getUserName().equals(""))) {
 			Users u = usesService.selectByUsername(users.getUserName());

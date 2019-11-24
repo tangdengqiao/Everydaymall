@@ -19,6 +19,9 @@ public class CommodityServiceImpl implements ICommodityService {
 	@Autowired
 	private CommodityMapper commodityMapper;
 
+	/**
+	 * 首页展示商品
+	 */
 	@Override
 	public List<Commodity> listCommodity(String commodityName) {
 		try {
