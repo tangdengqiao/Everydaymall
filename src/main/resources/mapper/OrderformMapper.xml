@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.everydaymall.mapper.OrderformMapper">
+  <resultMap id="BaseResultMap" type="com.everydaymall.entity.Orderform">
+    <constructor>
+      <idArg column="id_index" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="id_order" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="order_numbers" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="id_shoppingcart" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="id_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="id_commodity" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="order_createtime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="order_price" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="order_address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="order_state" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id_index, id_order, order_numbers, id_shoppingcart, id_user, id_commodity, order_createtime, 
+    order_price, order_address, order_state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from orderform
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orderform
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.everydaymall.entity.Orderform">
+    insert into orderform (id_index, id_order, order_numbers, 
+      id_shoppingcart, id_user, id_commodity, 
+      order_createtime, order_price, order_address, 
+      order_state)
+    values (#{idIndex,jdbcType=INTEGER}, #{idOrder,jdbcType=VARCHAR}, #{orderNumbers,jdbcType=VARCHAR}, 
+      #{idShoppingcart,jdbcType=VARCHAR}, #{idUser,jdbcType=VARCHAR}, #{idCommodity,jdbcType=VARCHAR}, 
+      #{orderCreatetime,jdbcType=VARCHAR}, #{orderPrice,jdbcType=REAL}, #{orderAddress,jdbcType=VARCHAR}, 
+      #{orderState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.everydaymall.entity.Orderform">
+    insert into orderform
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        id_index,
+      </if>
+      <if test="idOrder != null">
+        id_order,
+      </if>
+      <if test="orderNumbers != null">
+        order_numbers,
+      </if>
+      <if test="idShoppingcart != null">
+        id_shoppingcart,
+      </if>
+      <if test="idUser != null">
+        id_user,
+      </if>
+      <if test="idCommodity != null">
+        id_commodity,
+      </if>
+      <if test="orderCreatetime != null">
+        order_createtime,
+      </if>
+      <if test="orderPrice != null">
+        order_price,
+      </if>
+      <if test="orderAddress != null">
+        order_address,
+      </if>
+      <if test="orderState != null">
+        order_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        #{idIndex,jdbcType=INTEGER},
+      </if>
+      <if test="idOrder != null">
+        #{idOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumbers != null">
+        #{orderNumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="idShoppingcart != null">
+        #{idShoppingcart,jdbcType=VARCHAR},
+      </if>
+      <if test="idUser != null">
+        #{idUser,jdbcType=VARCHAR},
+      </if>
+      <if test="idCommodity != null">
+        #{idCommodity,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCreatetime != null">
+        #{orderCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPrice != null">
+        #{orderPrice,jdbcType=REAL},
+      </if>
+      <if test="orderAddress != null">
+        #{orderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null">
+        #{orderState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.everydaymall.entity.Orderform">
+    update orderform
+    <set>
+      <if test="idOrder != null">
+        id_order = #{idOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumbers != null">
+        order_numbers = #{orderNumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="idShoppingcart != null">
+        id_shoppingcart = #{idShoppingcart,jdbcType=VARCHAR},
+      </if>
+      <if test="idUser != null">
+        id_user = #{idUser,jdbcType=VARCHAR},
+      </if>
+      <if test="idCommodity != null">
+        id_commodity = #{idCommodity,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCreatetime != null">
+        order_createtime = #{orderCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPrice != null">
+        order_price = #{orderPrice,jdbcType=REAL},
+      </if>
+      <if test="orderAddress != null">
+        order_address = #{orderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null">
+        order_state = #{orderState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.everydaymall.entity.Orderform">
+    update orderform
+    set id_order = #{idOrder,jdbcType=VARCHAR},
+      order_numbers = #{orderNumbers,jdbcType=VARCHAR},
+      id_shoppingcart = #{idShoppingcart,jdbcType=VARCHAR},
+      id_user = #{idUser,jdbcType=VARCHAR},
+      id_commodity = #{idCommodity,jdbcType=VARCHAR},
+      order_createtime = #{orderCreatetime,jdbcType=VARCHAR},
+      order_price = #{orderPrice,jdbcType=REAL},
+      order_address = #{orderAddress,jdbcType=VARCHAR},
+      order_state = #{orderState,jdbcType=INTEGER}
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+</mapper>

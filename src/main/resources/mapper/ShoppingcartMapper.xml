@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.everydaymall.mapper.ShoppingcartMapper">
+  <resultMap id="BaseResultMap" type="com.everydaymall.entity.Shoppingcart">
+    <constructor>
+      <idArg column="id_index" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="id_shoppingcart" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="shoppingcart_createby" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="shoppingcart_createtime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="id_commodity" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="shoppingcart_price" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="shoppingcart_number" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id_index, id_shoppingcart, shoppingcart_createby, shoppingcart_createtime, id_commodity, 
+    shoppingcart_price, shoppingcart_number
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shoppingcart
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shoppingcart
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.everydaymall.entity.Shoppingcart">
+    insert into shoppingcart (id_index, id_shoppingcart, shoppingcart_createby, 
+      shoppingcart_createtime, id_commodity, shoppingcart_price, 
+      shoppingcart_number)
+    values (#{idIndex,jdbcType=INTEGER}, #{idShoppingcart,jdbcType=VARCHAR}, #{shoppingcartCreateby,jdbcType=VARCHAR}, 
+      #{shoppingcartCreatetime,jdbcType=VARCHAR}, #{idCommodity,jdbcType=VARCHAR}, #{shoppingcartPrice,jdbcType=REAL}, 
+      #{shoppingcartNumber,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.everydaymall.entity.Shoppingcart">
+    insert into shoppingcart
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        id_index,
+      </if>
+      <if test="idShoppingcart != null">
+        id_shoppingcart,
+      </if>
+      <if test="shoppingcartCreateby != null">
+        shoppingcart_createby,
+      </if>
+      <if test="shoppingcartCreatetime != null">
+        shoppingcart_createtime,
+      </if>
+      <if test="idCommodity != null">
+        id_commodity,
+      </if>
+      <if test="shoppingcartPrice != null">
+        shoppingcart_price,
+      </if>
+      <if test="shoppingcartNumber != null">
+        shoppingcart_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        #{idIndex,jdbcType=INTEGER},
+      </if>
+      <if test="idShoppingcart != null">
+        #{idShoppingcart,jdbcType=VARCHAR},
+      </if>
+      <if test="shoppingcartCreateby != null">
+        #{shoppingcartCreateby,jdbcType=VARCHAR},
+      </if>
+      <if test="shoppingcartCreatetime != null">
+        #{shoppingcartCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="idCommodity != null">
+        #{idCommodity,jdbcType=VARCHAR},
+      </if>
+      <if test="shoppingcartPrice != null">
+        #{shoppingcartPrice,jdbcType=REAL},
+      </if>
+      <if test="shoppingcartNumber != null">
+        #{shoppingcartNumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.everydaymall.entity.Shoppingcart">
+    update shoppingcart
+    <set>
+      <if test="idShoppingcart != null">
+        id_shoppingcart = #{idShoppingcart,jdbcType=VARCHAR},
+      </if>
+      <if test="shoppingcartCreateby != null">
+        shoppingcart_createby = #{shoppingcartCreateby,jdbcType=VARCHAR},
+      </if>
+      <if test="shoppingcartCreatetime != null">
+        shoppingcart_createtime = #{shoppingcartCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="idCommodity != null">
+        id_commodity = #{idCommodity,jdbcType=VARCHAR},
+      </if>
+      <if test="shoppingcartPrice != null">
+        shoppingcart_price = #{shoppingcartPrice,jdbcType=REAL},
+      </if>
+      <if test="shoppingcartNumber != null">
+        shoppingcart_number = #{shoppingcartNumber,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.everydaymall.entity.Shoppingcart">
+    update shoppingcart
+    set id_shoppingcart = #{idShoppingcart,jdbcType=VARCHAR},
+      shoppingcart_createby = #{shoppingcartCreateby,jdbcType=VARCHAR},
+      shoppingcart_createtime = #{shoppingcartCreatetime,jdbcType=VARCHAR},
+      id_commodity = #{idCommodity,jdbcType=VARCHAR},
+      shoppingcart_price = #{shoppingcartPrice,jdbcType=REAL},
+      shoppingcart_number = #{shoppingcartNumber,jdbcType=INTEGER}
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.everydaymall.mapper.RefundMapper">
+  <resultMap id="BaseResultMap" type="com.everydaymall.entity.Refund">
+    <constructor>
+      <idArg column="id_index" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="id_refund" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="id_order" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="id_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="id_commodity" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="refund_money" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="refund_reason" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="refund_launchtime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="refund_time" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="refund_state" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id_index, id_refund, id_order, id_user, id_commodity, refund_money, refund_reason, 
+    refund_launchtime, refund_time, refund_state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from refund
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from refund
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.everydaymall.entity.Refund">
+    insert into refund (id_index, id_refund, id_order, 
+      id_user, id_commodity, refund_money, 
+      refund_reason, refund_launchtime, refund_time, 
+      refund_state)
+    values (#{idIndex,jdbcType=INTEGER}, #{idRefund,jdbcType=VARCHAR}, #{idOrder,jdbcType=VARCHAR}, 
+      #{idUser,jdbcType=VARCHAR}, #{idCommodity,jdbcType=VARCHAR}, #{refundMoney,jdbcType=REAL}, 
+      #{refundReason,jdbcType=VARCHAR}, #{refundLaunchtime,jdbcType=VARCHAR}, #{refundTime,jdbcType=VARCHAR}, 
+      #{refundState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.everydaymall.entity.Refund">
+    insert into refund
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        id_index,
+      </if>
+      <if test="idRefund != null">
+        id_refund,
+      </if>
+      <if test="idOrder != null">
+        id_order,
+      </if>
+      <if test="idUser != null">
+        id_user,
+      </if>
+      <if test="idCommodity != null">
+        id_commodity,
+      </if>
+      <if test="refundMoney != null">
+        refund_money,
+      </if>
+      <if test="refundReason != null">
+        refund_reason,
+      </if>
+      <if test="refundLaunchtime != null">
+        refund_launchtime,
+      </if>
+      <if test="refundTime != null">
+        refund_time,
+      </if>
+      <if test="refundState != null">
+        refund_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        #{idIndex,jdbcType=INTEGER},
+      </if>
+      <if test="idRefund != null">
+        #{idRefund,jdbcType=VARCHAR},
+      </if>
+      <if test="idOrder != null">
+        #{idOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="idUser != null">
+        #{idUser,jdbcType=VARCHAR},
+      </if>
+      <if test="idCommodity != null">
+        #{idCommodity,jdbcType=VARCHAR},
+      </if>
+      <if test="refundMoney != null">
+        #{refundMoney,jdbcType=REAL},
+      </if>
+      <if test="refundReason != null">
+        #{refundReason,jdbcType=VARCHAR},
+      </if>
+      <if test="refundLaunchtime != null">
+        #{refundLaunchtime,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTime != null">
+        #{refundTime,jdbcType=VARCHAR},
+      </if>
+      <if test="refundState != null">
+        #{refundState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.everydaymall.entity.Refund">
+    update refund
+    <set>
+      <if test="idRefund != null">
+        id_refund = #{idRefund,jdbcType=VARCHAR},
+      </if>
+      <if test="idOrder != null">
+        id_order = #{idOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="idUser != null">
+        id_user = #{idUser,jdbcType=VARCHAR},
+      </if>
+      <if test="idCommodity != null">
+        id_commodity = #{idCommodity,jdbcType=VARCHAR},
+      </if>
+      <if test="refundMoney != null">
+        refund_money = #{refundMoney,jdbcType=REAL},
+      </if>
+      <if test="refundReason != null">
+        refund_reason = #{refundReason,jdbcType=VARCHAR},
+      </if>
+      <if test="refundLaunchtime != null">
+        refund_launchtime = #{refundLaunchtime,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTime != null">
+        refund_time = #{refundTime,jdbcType=VARCHAR},
+      </if>
+      <if test="refundState != null">
+        refund_state = #{refundState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.everydaymall.entity.Refund">
+    update refund
+    set id_refund = #{idRefund,jdbcType=VARCHAR},
+      id_order = #{idOrder,jdbcType=VARCHAR},
+      id_user = #{idUser,jdbcType=VARCHAR},
+      id_commodity = #{idCommodity,jdbcType=VARCHAR},
+      refund_money = #{refundMoney,jdbcType=REAL},
+      refund_reason = #{refundReason,jdbcType=VARCHAR},
+      refund_launchtime = #{refundLaunchtime,jdbcType=VARCHAR},
+      refund_time = #{refundTime,jdbcType=VARCHAR},
+      refund_state = #{refundState,jdbcType=INTEGER}
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+</mapper>

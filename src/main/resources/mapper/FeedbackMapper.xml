@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.everydaymall.mapper.FeedbackMapper">
+  <resultMap id="BaseResultMap" type="com.everydaymall.entity.Feedback">
+    <constructor>
+      <idArg column="id_index" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="id_feedback" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="feedback_createby" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="feedback_createtime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="feedback_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id_index, id_feedback, feedback_createby, feedback_createtime, feedback_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from feedback
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from feedback
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.everydaymall.entity.Feedback">
+    insert into feedback (id_index, id_feedback, feedback_createby, 
+      feedback_createtime, feedback_content)
+    values (#{idIndex,jdbcType=INTEGER}, #{idFeedback,jdbcType=VARCHAR}, #{feedbackCreateby,jdbcType=VARCHAR}, 
+      #{feedbackCreatetime,jdbcType=VARCHAR}, #{feedbackContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.everydaymall.entity.Feedback">
+    insert into feedback
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        id_index,
+      </if>
+      <if test="idFeedback != null">
+        id_feedback,
+      </if>
+      <if test="feedbackCreateby != null">
+        feedback_createby,
+      </if>
+      <if test="feedbackCreatetime != null">
+        feedback_createtime,
+      </if>
+      <if test="feedbackContent != null">
+        feedback_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        #{idIndex,jdbcType=INTEGER},
+      </if>
+      <if test="idFeedback != null">
+        #{idFeedback,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackCreateby != null">
+        #{feedbackCreateby,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackCreatetime != null">
+        #{feedbackCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackContent != null">
+        #{feedbackContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.everydaymall.entity.Feedback">
+    update feedback
+    <set>
+      <if test="idFeedback != null">
+        id_feedback = #{idFeedback,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackCreateby != null">
+        feedback_createby = #{feedbackCreateby,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackCreatetime != null">
+        feedback_createtime = #{feedbackCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackContent != null">
+        feedback_content = #{feedbackContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.everydaymall.entity.Feedback">
+    update feedback
+    set id_feedback = #{idFeedback,jdbcType=VARCHAR},
+      feedback_createby = #{feedbackCreateby,jdbcType=VARCHAR},
+      feedback_createtime = #{feedbackCreatetime,jdbcType=VARCHAR},
+      feedback_content = #{feedbackContent,jdbcType=VARCHAR}
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+</mapper>

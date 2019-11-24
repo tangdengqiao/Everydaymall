@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.everydaymall.mapper.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.everydaymall.entity.Comment">
+    <constructor>
+      <idArg column="id_index" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="id_comment" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="comment_createby" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="comment_createtime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="id_commodity" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="comment_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="comment_picture" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id_index, id_comment, comment_createby, comment_createtime, id_commodity, comment_content, 
+    comment_picture
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from comment
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.everydaymall.entity.Comment">
+    insert into comment (id_index, id_comment, comment_createby, 
+      comment_createtime, id_commodity, comment_content, 
+      comment_picture)
+    values (#{idIndex,jdbcType=INTEGER}, #{idComment,jdbcType=VARCHAR}, #{commentCreateby,jdbcType=VARCHAR}, 
+      #{commentCreatetime,jdbcType=VARCHAR}, #{idCommodity,jdbcType=VARCHAR}, #{commentContent,jdbcType=VARCHAR}, 
+      #{commentPicture,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.everydaymall.entity.Comment">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        id_index,
+      </if>
+      <if test="idComment != null">
+        id_comment,
+      </if>
+      <if test="commentCreateby != null">
+        comment_createby,
+      </if>
+      <if test="commentCreatetime != null">
+        comment_createtime,
+      </if>
+      <if test="idCommodity != null">
+        id_commodity,
+      </if>
+      <if test="commentContent != null">
+        comment_content,
+      </if>
+      <if test="commentPicture != null">
+        comment_picture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        #{idIndex,jdbcType=INTEGER},
+      </if>
+      <if test="idComment != null">
+        #{idComment,jdbcType=VARCHAR},
+      </if>
+      <if test="commentCreateby != null">
+        #{commentCreateby,jdbcType=VARCHAR},
+      </if>
+      <if test="commentCreatetime != null">
+        #{commentCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="idCommodity != null">
+        #{idCommodity,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContent != null">
+        #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commentPicture != null">
+        #{commentPicture,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.everydaymall.entity.Comment">
+    update comment
+    <set>
+      <if test="idComment != null">
+        id_comment = #{idComment,jdbcType=VARCHAR},
+      </if>
+      <if test="commentCreateby != null">
+        comment_createby = #{commentCreateby,jdbcType=VARCHAR},
+      </if>
+      <if test="commentCreatetime != null">
+        comment_createtime = #{commentCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="idCommodity != null">
+        id_commodity = #{idCommodity,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContent != null">
+        comment_content = #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commentPicture != null">
+        comment_picture = #{commentPicture,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.everydaymall.entity.Comment">
+    update comment
+    set id_comment = #{idComment,jdbcType=VARCHAR},
+      comment_createby = #{commentCreateby,jdbcType=VARCHAR},
+      comment_createtime = #{commentCreatetime,jdbcType=VARCHAR},
+      id_commodity = #{idCommodity,jdbcType=VARCHAR},
+      comment_content = #{commentContent,jdbcType=VARCHAR},
+      comment_picture = #{commentPicture,jdbcType=VARCHAR}
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+</mapper>

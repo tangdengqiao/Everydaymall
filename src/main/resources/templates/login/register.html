@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>register</title>
+<link rel="stylesheet" type="text/css"
+	href="../login/css/normalize.css" />
+<link rel="stylesheet" type="text/css"
+	href="../login/css/demo.css" />
+<!--必要样式-->
+<link rel="stylesheet" type="text/css"
+	href="../login/css/component.css" />
+<!--[if IE]>
+<script src="js/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+	<div class="container demo-1">
+		<div class="content">
+			<div id="large-header" class="large-header">
+				<canvas id="demo-canvas"></canvas>
+				<div class="logo_box">
+					<h3>注册账户</h3>
+					<form id="registerFrom">
+						<div class="input_outer">
+							<span class="u_user"></span> <input name="userName" id="userName"
+								class="text" style="color: #FFFFFF !important" type="text"
+								placeholder="请输入账户">
+						</div>
+						<div class="input_outer">
+							<span class="us_uer"></span> <input name="userPwd" id="userPwd"
+								class="text"
+								style="color: #FFFFFF !important; position: absolute; z-index: 100;"
+								value="" type="password" placeholder="请输入密码">
+						</div>
+						<div class="input_outer">
+							<input style="margin-top: 10px; margin-left: 10px" type="file"
+								id="userHeadportrait">
+						</div>
+						<div class="input_outer">
+							<input name="userPhonenumber" id="userPhonenumber" class="text"
+								style="color: #FFFFFF !important" type="text"
+								placeholder="请输入手机号码">
+						</div>
+						<div class="mb2">
+							<a id="register" href="javascript:;" class="act-but submit"
+								style="color: #FFFFFF">注册</a>
+							<a id="login" href="javascript:;" class="act-but submit"
+								style="color: #FFFFFF">已有账号，点击登录</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /container -->
+	<script src="../login/js/TweenLite.min.js"></script>
+	<script src="../login/js/EasePack.min.js"></script>
+	<script src="../login/js/rAF.js}"></script>
+	<script src="../login/js/demo-1.js"></script>
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#register").click(
+					function() {
+						//创建formdata对象
+						var formData = new FormData();
+						//给formData对象添加<input>标签,注意与input标签的ID一致
+						formData.append('userName', $('#userName').val());
+						formData.append('userPwd', $('#userPwd').val());
+						formData.append('file',
+								$('#userHeadportrait')[0].files[0]);
+						formData.append('userPhonenumber',
+								$('#userPhonenumber').val());
+						$.ajax({
+							url : '${req.contextPath}/user/register',
+							dataType : 'json',
+							type : 'POST',
+							async : false,
+							data : formData,
+							cache : false,
+							mimeType : "multipart/form-data",
+							processData : false, // 使数据不做处理
+							contentType : false, // 不要设置Content-Type请求头
+							success : function(data) {
+								console.log(data);
+								if (data.status == 200) {
+									alert(data.message);
+									location.href="${req.contextPath}/user/doLogin";
+								} else {
+									alert(data.message);
+								}
+							},
+							error : function(data) {
+								console.log(data);
+							}
+						});
+					})
+					
+					$("#login").click(
+						function() {
+							window.location.href="${req.contextPath}/user/doLogin";
+					})
+		})
+	</script>
+</body>
+</html>

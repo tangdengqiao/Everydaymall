@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.everydaymall.mapper.AddressMapper">
+  <resultMap id="BaseResultMap" type="com.everydaymall.entity.Address">
+    <constructor>
+      <idArg column="id_index" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="id_address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="address_createby" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="address_cratetime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="address_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="address_detailed" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id_index, id_address, address_createby, address_cratetime, address_name, address_detailed
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from address
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from address
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.everydaymall.entity.Address">
+    insert into address (id_index, id_address, address_createby, 
+      address_cratetime, address_name, address_detailed
+      )
+    values (#{idIndex,jdbcType=INTEGER}, #{idAddress,jdbcType=VARCHAR}, #{addressCreateby,jdbcType=VARCHAR}, 
+      #{addressCratetime,jdbcType=VARCHAR}, #{addressName,jdbcType=VARCHAR}, #{addressDetailed,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.everydaymall.entity.Address">
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        id_index,
+      </if>
+      <if test="idAddress != null">
+        id_address,
+      </if>
+      <if test="addressCreateby != null">
+        address_createby,
+      </if>
+      <if test="addressCratetime != null">
+        address_cratetime,
+      </if>
+      <if test="addressName != null">
+        address_name,
+      </if>
+      <if test="addressDetailed != null">
+        address_detailed,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        #{idIndex,jdbcType=INTEGER},
+      </if>
+      <if test="idAddress != null">
+        #{idAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCreateby != null">
+        #{addressCreateby,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCratetime != null">
+        #{addressCratetime,jdbcType=VARCHAR},
+      </if>
+      <if test="addressName != null">
+        #{addressName,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetailed != null">
+        #{addressDetailed,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.everydaymall.entity.Address">
+    update address
+    <set>
+      <if test="idAddress != null">
+        id_address = #{idAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCreateby != null">
+        address_createby = #{addressCreateby,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCratetime != null">
+        address_cratetime = #{addressCratetime,jdbcType=VARCHAR},
+      </if>
+      <if test="addressName != null">
+        address_name = #{addressName,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetailed != null">
+        address_detailed = #{addressDetailed,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.everydaymall.entity.Address">
+    update address
+    set id_address = #{idAddress,jdbcType=VARCHAR},
+      address_createby = #{addressCreateby,jdbcType=VARCHAR},
+      address_cratetime = #{addressCratetime,jdbcType=VARCHAR},
+      address_name = #{addressName,jdbcType=VARCHAR},
+      address_detailed = #{addressDetailed,jdbcType=VARCHAR}
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,32 @@
+##端口号和项目名的配置
+server:
+  port: 8080
+  servlet:
+    context-path: /Everydaymall
+    
+spring:
+##数据库相关配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/personal?characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 123
+
+##页面相关配置
+  thymeleaf: 
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+
+  
+##mybatis相关配置
+mybatis:
+    mapper-locations: classpath*:mapper/*.xml
+    type-aliases-package: com.everydaymall.Everydaymall.entity
+
+##上传图片相关配置
+upLoadPath: A://uploads/

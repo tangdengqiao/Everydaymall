@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.everydaymall.mapper.IdentityMapper">
+  <resultMap id="BaseResultMap" type="com.everydaymall.entity.Identity">
+    <constructor>
+      <idArg column="id_index" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="id_identity" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="identity_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="identity_describe" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id_index, id_identity, identity_name, identity_describe
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from identity
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from identity
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.everydaymall.entity.Identity">
+    insert into identity (id_index, id_identity, identity_name, 
+      identity_describe)
+    values (#{idIndex,jdbcType=INTEGER}, #{idIdentity,jdbcType=VARCHAR}, #{identityName,jdbcType=VARCHAR}, 
+      #{identityDescribe,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.everydaymall.entity.Identity">
+    insert into identity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        id_index,
+      </if>
+      <if test="idIdentity != null">
+        id_identity,
+      </if>
+      <if test="identityName != null">
+        identity_name,
+      </if>
+      <if test="identityDescribe != null">
+        identity_describe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        #{idIndex,jdbcType=INTEGER},
+      </if>
+      <if test="idIdentity != null">
+        #{idIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="identityName != null">
+        #{identityName,jdbcType=VARCHAR},
+      </if>
+      <if test="identityDescribe != null">
+        #{identityDescribe,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.everydaymall.entity.Identity">
+    update identity
+    <set>
+      <if test="idIdentity != null">
+        id_identity = #{idIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="identityName != null">
+        identity_name = #{identityName,jdbcType=VARCHAR},
+      </if>
+      <if test="identityDescribe != null">
+        identity_describe = #{identityDescribe,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.everydaymall.entity.Identity">
+    update identity
+    set id_identity = #{idIdentity,jdbcType=VARCHAR},
+      identity_name = #{identityName,jdbcType=VARCHAR},
+      identity_describe = #{identityDescribe,jdbcType=VARCHAR}
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+</mapper>

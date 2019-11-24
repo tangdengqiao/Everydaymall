@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.everydaymall.mapper.ShopMapper">
+  <resultMap id="BaseResultMap" type="com.everydaymall.entity.Shop">
+    <constructor>
+      <idArg column="id_index" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="id_shop" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="shop_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="shop_log" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="shop_createby" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="shop_createtime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="shop_describe" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="shop_state" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id_index, id_shop, shop_name, shop_log, shop_createby, shop_createtime, shop_describe, 
+    shop_state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shop
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.everydaymall.entity.Shop">
+    insert into shop (id_index, id_shop, shop_name, 
+      shop_log, shop_createby, shop_createtime, 
+      shop_describe, shop_state)
+    values (#{idIndex,jdbcType=INTEGER}, #{idShop,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, 
+      #{shopLog,jdbcType=VARCHAR}, #{shopCreateby,jdbcType=VARCHAR}, #{shopCreatetime,jdbcType=VARCHAR}, 
+      #{shopDescribe,jdbcType=VARCHAR}, #{shopState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.everydaymall.entity.Shop">
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        id_index,
+      </if>
+      <if test="idShop != null">
+        id_shop,
+      </if>
+      <if test="shopName != null">
+        shop_name,
+      </if>
+      <if test="shopLog != null">
+        shop_log,
+      </if>
+      <if test="shopCreateby != null">
+        shop_createby,
+      </if>
+      <if test="shopCreatetime != null">
+        shop_createtime,
+      </if>
+      <if test="shopDescribe != null">
+        shop_describe,
+      </if>
+      <if test="shopState != null">
+        shop_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idIndex != null">
+        #{idIndex,jdbcType=INTEGER},
+      </if>
+      <if test="idShop != null">
+        #{idShop,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null">
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopLog != null">
+        #{shopLog,jdbcType=VARCHAR},
+      </if>
+      <if test="shopCreateby != null">
+        #{shopCreateby,jdbcType=VARCHAR},
+      </if>
+      <if test="shopCreatetime != null">
+        #{shopCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="shopDescribe != null">
+        #{shopDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="shopState != null">
+        #{shopState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.everydaymall.entity.Shop">
+    update shop
+    <set>
+      <if test="idShop != null">
+        id_shop = #{idShop,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null">
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopLog != null">
+        shop_log = #{shopLog,jdbcType=VARCHAR},
+      </if>
+      <if test="shopCreateby != null">
+        shop_createby = #{shopCreateby,jdbcType=VARCHAR},
+      </if>
+      <if test="shopCreatetime != null">
+        shop_createtime = #{shopCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="shopDescribe != null">
+        shop_describe = #{shopDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="shopState != null">
+        shop_state = #{shopState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.everydaymall.entity.Shop">
+    update shop
+    set id_shop = #{idShop,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      shop_log = #{shopLog,jdbcType=VARCHAR},
+      shop_createby = #{shopCreateby,jdbcType=VARCHAR},
+      shop_createtime = #{shopCreatetime,jdbcType=VARCHAR},
+      shop_describe = #{shopDescribe,jdbcType=VARCHAR},
+      shop_state = #{shopState,jdbcType=INTEGER}
+    where id_index = #{idIndex,jdbcType=INTEGER}
+  </update>
+</mapper>
