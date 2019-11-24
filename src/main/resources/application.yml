@@ -30,3 +30,8 @@ mybatis:
 
 ##上传图片相关配置
 upLoadPath: A://uploads/
+
+##SQL日志打印相关配置
+logging:
+    level:
+      com.everydaymall.mapper: DEBUG ##包路径为mapper文件包路径
