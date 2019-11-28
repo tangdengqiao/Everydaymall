@@ -192,7 +192,7 @@
 		from commodity
 		where 1=1
 		<if test="null!=commodityName and ''!=commodityName">
-			and commodityName like concat("%",#{commodityName,jdbcType=VARCHAR},"%")
+			and commodity_name like concat("%",#{commodityName,jdbcType=VARCHAR},"%")
 		</if>
 	</select>
 </mapper>

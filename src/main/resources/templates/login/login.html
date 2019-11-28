@@ -42,7 +42,7 @@
 						</div>
 						<div class="mb2">
 							<a id="register" class="act-but submit" href="javascript:;"
-								style="color: #FFFFFF">注册</a>
+								style="color: #FFFFFF">去注册</a>
 						</div>
 					</form>
 				</div>
@@ -50,17 +50,17 @@
 		</div>
 	</div>
 	<!-- /container -->
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 	<script src="../login/js/TweenLite.min.js"></script>
 	<script src="../login/js/EasePack.min.js"></script>
 	<script src="../login/js/rAF.js"></script>
 	<script src="../login/js/demo-1.js"></script>
-	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript">
+	<script type="text/javascript" th:inline="javascript">
 		$(function() {
 			$("#login").click(function() {
 				var formData = $('#loginfrom').serializeArray();
 				$.ajax({
-					url : '${req.contextPath}/user/login',
+					url : [[@{/user/login}]],
 					dataType : 'json',
 					type : 'POST',
 					data : formData,
@@ -69,7 +69,7 @@
 						console.log(data);
 						if (data.status == 200) {
 							alert(data.message);
-							location.href="${req.contextPath}/home/doFrontendHome";
+							location.href=[[@{/home/doFrontendHome}]];
 						} else {
 							alert(data.message);
 						}
@@ -80,7 +80,7 @@
 				});
 			}), 
 			$("#register").click(function() {
-				window.location.href = "${req.contextPath}/user/doRegister";
+				window.location.href = [[@{/user/doRegister}]];
 			})
 		})
 	</script>

@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<html lang="en" class="no-js">
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,9 +47,9 @@
 								placeholder="请输入手机号码">
 						</div>
 						<div class="mb2">
-							<a id="register" href="javascript:;" class="act-but submit"
+							<a id="register"  class="act-but submit" href="javascript:;"
 								style="color: #FFFFFF">注册</a>
-							<a id="login" href="javascript:;" class="act-but submit"
+							<a id="login"  class="act-but submit" href="javascript:;"
 								style="color: #FFFFFF">已有账号，点击登录</a>
 						</div>
 					</form>
@@ -59,12 +58,12 @@
 		</div>
 	</div>
 	<!-- /container -->
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 	<script src="../login/js/TweenLite.min.js"></script>
 	<script src="../login/js/EasePack.min.js"></script>
-	<script src="../login/js/rAF.js}"></script>
+	<script src="../login/js/rAF.js"></script>
 	<script src="../login/js/demo-1.js"></script>
-	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript">
+	<script type="text/javascript" th:inline="javascript">
 		$(function() {
 			$("#register").click(
 					function() {
@@ -78,7 +77,7 @@
 						formData.append('userPhonenumber',
 								$('#userPhonenumber').val());
 						$.ajax({
-							url : '${req.contextPath}/user/register',
+							url : [[@{/user/register}]],
 							dataType : 'json',
 							type : 'POST',
 							async : false,
@@ -91,7 +90,7 @@
 								console.log(data);
 								if (data.status == 200) {
 									alert(data.message);
-									location.href="${req.contextPath}/user/doLogin";
+									location.href=[[@{/user/doLogin}]];
 								} else {
 									alert(data.message);
 								}
@@ -104,7 +103,7 @@
 					
 					$("#login").click(
 						function() {
-							window.location.href="${req.contextPath}/user/doLogin";
+							window.location.href=[[@{/user/doLogin}]];
 					})
 		})
 	</script>

@@ -32,4 +32,19 @@ public class CommodityServiceImpl implements ICommodityService {
 		}
 	}
 
+	/**
+	 * 根据ID查询商品的详情
+	 * @param idIndex
+	 * @return
+	 */
+	@Override
+	public Commodity selectCommodity(Integer idIndex) {
+		try {
+			return commodityMapper.selectByPrimaryKey(idIndex);
+		} catch (Exception e) {
+			LOGGER.info("CommodityServiceImpl    selectCommodity  查询异常----" + e.toString());
+			return null;
+		}
+	}
+
 }
