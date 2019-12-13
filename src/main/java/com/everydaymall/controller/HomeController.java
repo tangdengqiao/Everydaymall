@@ -1,11 +1,7 @@
 package com.everydaymall.controller;
 
-import static org.assertj.core.api.Assertions.setMaxElementsForPrinting;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -74,12 +70,12 @@ public class HomeController {
 	public List<Object> selectCommodity(Integer idIndex) throws Exception {
 		Commodity commodity = commodityService.selectCommodity(idIndex);
 		List<CommodityType> listCommodityType = commodityTypeService.listCommodityType();
-		List<Object> list=new ArrayList<>();
+		List<Object> list = new ArrayList<>();
 		list.add(commodity);
 		list.add(listCommodityType);
-		if(list!=null) {
+		if (list != null) {
 			return list;
-		}else {
+		} else {
 			return null;
 		}
 	}
@@ -92,10 +88,10 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/saveCollection", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseResult<Object> saveCollection(Collection collection,HttpServletRequest request) throws Exception {
+	public ResponseResult<Object> saveCollection(Collection collection, HttpServletRequest request) throws Exception {
 		System.out.println(collection);
 		HttpSession session = request.getSession();
-		Users users= (Users)session.getAttribute("user");
+		Users users = (Users) session.getAttribute("user");
 		collection.setIdUser(users.getIdUser());
 		collection.setIdCommodity(collection.getIdCommodity());
 		if (collectionService.saveCollection(collection) > Constants.SAVEREGISTER_SUCESS) {

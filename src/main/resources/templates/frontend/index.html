@@ -551,7 +551,6 @@
 			success : function(list) {
 		        for (var i = 0; i < list.length; i++) {
 		        		
-		        	
 				/* 商品名和价格 */
 				var headerdesc='<h2 class="product-title">'+list[0].commodityName+'</h2><p class="price">'+list[0].commodityPrice+'￥</p>';
 				$("#header-desc").html(headerdesc);
@@ -578,8 +577,6 @@
 				var id='编号:<a>'+list[0].idIndex+'</a>';
 				$("#id").html(id); 
 		        }
-				
-				
 			},
 			error : function(data) {
 				console.log(data);
@@ -620,6 +617,6 @@
         	$('#number').val(parseInt($('#number').val())+1);
         }
      })
-    </script> -->
+    </script>
   </body>
 </html>
