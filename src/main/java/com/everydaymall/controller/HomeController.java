@@ -1,5 +1,9 @@
 package com.everydaymall.controller;
 
+import static org.assertj.core.api.Assertions.setMaxElementsForPrinting;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +24,6 @@ import com.everydaymall.entity.Collection;
 import com.everydaymall.entity.Commodity;
 import com.everydaymall.entity.CommodityType;
 import com.everydaymall.entity.Users;
-import com.everydaymall.mapper.CommodityMapper;
 import com.everydaymall.service.ICollectionService;
 import com.everydaymall.service.ICommodityService;
 import com.everydaymall.service.ICommodityTypeService;
@@ -42,7 +44,7 @@ public class HomeController {
 	private ICollectionService collectionService;
 
 	/**
-	 * 跳转到前端主页
+	 * 跳转到前端主页并且加载所有商品
 	 * 
 	 * @return
 	 */
@@ -69,12 +71,15 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/selectCommodity", method = RequestMethod.POST)
 	@ResponseBody
-	public Commodity selectCommodity(Integer idIndex) throws Exception {
-		System.out.println(idIndex);
-		Commodity Commodity = commodityService.selectCommodity(idIndex);
-		if (Commodity != null) {
-			return Commodity;
-		} else {
+	public List<Object> selectCommodity(Integer idIndex) throws Exception {
+		Commodity commodity = commodityService.selectCommodity(idIndex);
+		List<CommodityType> listCommodityType = commodityTypeService.listCommodityType();
+		List<Object> list=new ArrayList<>();
+		list.add(commodity);
+		list.add(listCommodityType);
+		if(list!=null) {
+			return list;
+		}else {
 			return null;
 		}
 	}
