@@ -38,13 +38,26 @@ public class CommodityServiceImpl implements ICommodityService {
 	 * @return
 	 */
 	@Override
-	public Commodity selectCommodity(Integer idIndex) {
+	public Commodity selectCommodityIdIndex(Integer idIndex) {
 		try {
 			return commodityMapper.selectByPrimaryKey(idIndex);
 		} catch (Exception e) {
 			LOGGER.info("CommodityServiceImpl    selectCommodity  查询异常----" + e.toString());
 			return null;
 		}
+	}
+	
+	/**
+	 * 根据商品idCommodity查询商品
+	 */
+	@Override
+	public Commodity selectCommodityIdCommodity(String idCommodity) {
+		try {
+			return commodityMapper.selectCommodityIdCommodity(idCommodity);
+		} catch (Exception e) {
+			LOGGER.info("CommodityServiceImpl    selectCommodityIdCommodity  查询异常----" + e.toString());
+		}
+		return null;
 	}
 
 }

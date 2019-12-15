@@ -117,4 +117,11 @@
       comment_picture = #{commentPicture,jdbcType=VARCHAR}
     where id_index = #{idIndex,jdbcType=INTEGER}
   </update>
+  
+   <select id="listComment" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where 1=1
+  </select>
 </mapper>

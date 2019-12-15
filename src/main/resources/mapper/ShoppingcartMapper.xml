@@ -117,4 +117,13 @@
       shoppingcart_number = #{shoppingcartNumber,jdbcType=INTEGER}
     where id_index = #{idIndex,jdbcType=INTEGER}
   </update>
+  
+  <!-- 自定义 -->
+  <select id="selectShoppingcart" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shoppingcart
+    where id_commodity = #{idCommodity,jdbcType=VARCHAR}
+    and shoppingcart_createby = #{shoppingcartCreateby,jdbcType=VARCHAR}
+  </select>
 </mapper>

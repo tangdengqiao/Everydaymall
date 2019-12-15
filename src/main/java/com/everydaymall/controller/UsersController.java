@@ -34,7 +34,7 @@ public class UsersController {
 	 * @return
 	 */
 	@RequestMapping("/doRegister")
-	public String doRegister() {
+	public String doRegister() throws Exception{
 		return "login/register";
 	}
 

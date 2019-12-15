@@ -195,4 +195,12 @@
 			and commodity_name like concat("%",#{commodityName,jdbcType=VARCHAR},"%")
 		</if>
 	</select>
+	
+	<select id="selectCommodityIdCommodity" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from commodity
+		where id_commodity = #{idCommodity,jdbcType=VARCHAR}
+	</select>
 </mapper>

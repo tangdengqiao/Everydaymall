@@ -13,9 +13,16 @@ public interface ICommodityService {
 	List<Commodity> listCommodity(String commodityName);
 	
 	/**
-	 * 根据ID查询商品的详情
+	 * 根据idIndex查询商品的详情
 	 * @param idIndex
 	 * @return
 	 */
-	Commodity selectCommodity(Integer idIndex);
+	Commodity selectCommodityIdIndex(Integer idIndex);
+	
+	/**
+	 * 根据商品idCommodity查询商品
+	 * @param idCommodity
+	 * @return
+	 */
+	Commodity selectCommodityIdCommodity(String idCommodity);
 }

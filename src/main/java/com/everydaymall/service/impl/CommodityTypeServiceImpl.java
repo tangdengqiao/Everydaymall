@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.everydaymall.entity.Commodity;
 import com.everydaymall.entity.CommodityType;
 import com.everydaymall.mapper.CommodityTypeMapper;
 import com.everydaymall.service.ICommodityTypeService;
@@ -26,10 +25,37 @@ public class CommodityTypeServiceImpl implements ICommodityTypeService {
 	 * @return
 	 */
 	@Override
+	public List<CommodityType> listCommodityTypeLimit() {
+		try {
+			List<CommodityType> listCommodityTypeLimit = commodityTypeMapper.listCommodityTypeLimit();
+			return listCommodityTypeLimit;
+		} catch (Exception e) {
+			LOGGER.info("CommodityTypeServiceImpl    listCommodityTypeLimit  查询异常----" + e.toString());
+			return null;
+		}
+	}
+
+	/**
+	 * 获取所有类别
+	 */
+	@Override
 	public List<CommodityType> listCommodityType() {
 		try {
-			List<CommodityType> listCommodityType = commodityTypeMapper.listCommodityType();
-			return listCommodityType;
+			List<CommodityType> listCommodityTypeLimit = commodityTypeMapper.listCommodityType();
+			return listCommodityTypeLimit;
+		} catch (Exception e) {
+			LOGGER.info("CommodityTypeServiceImpl    listCommodity  查询异常----" + e.toString());
+			return null;
+		}
+	}
+
+	/**
+	 * 根据类别IdType查询类别名称
+	 */
+	@Override
+	public String selectTypeNameIdType(String IdType) {
+		try {
+			return commodityTypeMapper.selectTypeNameIdType(IdType);
 		} catch (Exception e) {
 			LOGGER.info("CommodityTypeServiceImpl    listCommodity  查询异常----" + e.toString());
 			return null;

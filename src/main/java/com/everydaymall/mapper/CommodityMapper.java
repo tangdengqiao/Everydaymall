@@ -26,4 +26,11 @@ public interface CommodityMapper {
 	 * @return
 	 */
 	List<Commodity> listCommodity(@Param(value = "commodityName") String commodityName);
+	
+	/**
+	 * 根据商品ID查询商品
+	 * @param idCommodity
+	 * @return
+	 */
+	Commodity selectCommodityIdCommodity(String idCommodity);
 }

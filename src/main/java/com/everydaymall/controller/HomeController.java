@@ -19,10 +19,12 @@ import com.everydaymall.common.result.ResponseResult;
 import com.everydaymall.entity.Collection;
 import com.everydaymall.entity.Commodity;
 import com.everydaymall.entity.CommodityType;
+import com.everydaymall.entity.Shoppingcart;
 import com.everydaymall.entity.Users;
 import com.everydaymall.service.ICollectionService;
 import com.everydaymall.service.ICommodityService;
 import com.everydaymall.service.ICommodityTypeService;
+import com.everydaymall.service.IShoppingcartService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -39,10 +41,18 @@ public class HomeController {
 	@Autowired
 	private ICollectionService collectionService;
 
+	@Autowired
+	private IShoppingcartService shoppingcartService;
+
 	/**
 	 * 跳转到前端主页并且加载所有商品
 	 * 
+	 * @param commodityName
+	 * @param modelAndView
+	 * @param start
+	 * @param size
 	 * @return
+	 * @throws Exception
 	 */
 	@RequestMapping("/doFrontendHome")
 	public ModelAndView doFrontendHome(@RequestParam(value = "commodityName", defaultValue = "") String commodityName,
@@ -52,7 +62,7 @@ public class HomeController {
 		List<Commodity> listCommodity = commodityService.listCommodity(commodityName);
 		PageInfo<Commodity> page = new PageInfo<Commodity>(listCommodity);
 		modelAndView.addObject("pages", page);
-		List<CommodityType> listCommodityType = commodityTypeService.listCommodityType();
+		List<CommodityType> listCommodityType = commodityTypeService.listCommodityTypeLimit();
 		modelAndView.addObject("listCommodityType", listCommodityType);
 		modelAndView.addObject("commodityName", commodityName);
 		modelAndView.setViewName("frontend/index");
@@ -64,11 +74,12 @@ public class HomeController {
 	 * 
 	 * @param idIndex
 	 * @return
+	 * @throws Exception
 	 */
 	@RequestMapping(value = "/selectCommodity", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Object> selectCommodity(Integer idIndex) throws Exception {
-		Commodity commodity = commodityService.selectCommodity(idIndex);
+		Commodity commodity = commodityService.selectCommodityIdIndex(idIndex);
 		List<CommodityType> listCommodityType = commodityTypeService.listCommodityType();
 		List<Object> list = new ArrayList<>();
 		list.add(commodity);
@@ -84,20 +95,63 @@ public class HomeController {
 	 * 增加收藏
 	 * 
 	 * @param collection
+	 * @param request
 	 * @return
+	 * @throws Exception
 	 */
 	@RequestMapping(value = "/saveCollection", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseResult<Object> saveCollection(Collection collection, HttpServletRequest request) throws Exception {
-		System.out.println(collection);
 		HttpSession session = request.getSession();
 		Users users = (Users) session.getAttribute("user");
-		collection.setIdUser(users.getIdUser());
-		collection.setIdCommodity(collection.getIdCommodity());
-		if (collectionService.saveCollection(collection) > Constants.SAVEREGISTER_SUCESS) {
-			return new ResponseResult<Object>(200, "已收藏");
+		if (users != null) {
+			collection.setIdUser(users.getIdUser());
+			collection.setIdCommodity(collection.getIdCommodity());
+			if (collectionService.saveCollection(collection) > Constants.SAVEREGISTER_SUCESS) {
+				return new ResponseResult<Object>(200, "已收藏");
+			} else {
+				return new ResponseResult<Object>(500, "收藏失败");
+			}
 		} else {
-			return new ResponseResult<Object>(500, "收藏失败");
+			return new ResponseResult<Object>(100, "你还没有登录，请先登录");
+		}
+	}
+
+	/**
+	 * 增加购物车
+	 */
+	@RequestMapping(value = "/saveShoppingcart", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseResult<Object> savesaveShoppingcart(Integer idIndex, Integer number, HttpServletRequest request)
+			throws Exception {
+		HttpSession session = request.getSession();
+		Users users = (Users) session.getAttribute("user");
+		if (users != null) {
+			Commodity commodity = commodityService.selectCommodityIdIndex(idIndex);
+			Shoppingcart shoppingcarta = shoppingcartService.selectShoppingcart(commodity.getIdCommodity(),
+					users.getIdUser());
+			Shoppingcart shoppingcart = new Shoppingcart();
+			if (shoppingcarta == null) {
+				shoppingcart.setIdCommodity(commodity.getIdCommodity());
+				shoppingcart.setShoppingcartPrice(commodity.getCommodityPrice() * number);
+				shoppingcart.setShoppingcartNumber(number);
+				shoppingcart.setShoppingcartCreateby(users.getIdUser());
+				if (shoppingcartService.saveShoppingcart(shoppingcart) > Constants.SAVEREGISTER_SUCESS) {
+					return new ResponseResult<Object>(200, "已加入购物车");
+				} else {
+					return new ResponseResult<Object>(500, "加入购物车失败");
+				}
+			} else {
+				shoppingcart.setIdIndex(shoppingcarta.getIdIndex());
+				shoppingcart.setShoppingcartNumber(shoppingcarta.getShoppingcartNumber() + number);
+				if (shoppingcartService.updateShoppingcartNumber(shoppingcart) > Constants.SAVEREGISTER_SUCESS) {
+					return new ResponseResult<Object>(200, "已加入购物车");
+				} else {
+					return new ResponseResult<Object>(500, "加入购物车失败");
+				}
+			}
+		} else {
+			return new ResponseResult<Object>(100, "你还没有登录，请先登录");
 		}
 	}
 }
