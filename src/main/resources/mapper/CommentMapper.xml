@@ -118,10 +118,19 @@
     where id_index = #{idIndex,jdbcType=INTEGER}
   </update>
   
+  	<!-- 自定义 -->
+  	<!-- 根据idCommodity查询评论 -->
    <select id="listComment" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from comment
     where 1=1
+  </select>
+  
+  <!-- 根据idCommodity查询评论数量 -->
+  <select id="selectCommentNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(id_index)
+    from comment
+    where id_commodity = #{idCommodity,jdbcType=VARCHAR}
   </select>
 </mapper>

@@ -148,7 +148,7 @@
   </select>
   
   <!-- 根据类别IdType查询类别名称 -->
-   <select id="selectTypeNameIdType" parameterType="java.lang.String" resultMap="BaseResultMap">
+   <select id="selectTypeNameIdType" parameterType="java.lang.String"  resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from commodity_type

@@ -42,7 +42,7 @@ public class CommodityServiceImpl implements ICommodityService {
 		try {
 			return commodityMapper.selectByPrimaryKey(idIndex);
 		} catch (Exception e) {
-			LOGGER.info("CommodityServiceImpl    selectCommodity  查询异常----" + e.toString());
+			LOGGER.info("CommodityServiceImpl    selectCommodityIdIndex  查询异常----" + e.toString());
 			return null;
 		}
 	}

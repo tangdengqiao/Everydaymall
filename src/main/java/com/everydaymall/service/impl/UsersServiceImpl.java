@@ -1,5 +1,7 @@
 package com.everydaymall.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +68,16 @@ public class UsersServiceImpl implements IUsesService {
 			return usersMapper.selectByUsers(users);
 		} catch (Exception e) {
 			LOGGER.info("UsersServiceImpl    selectByUsers  查询异常----" + e.toString());
+			return null;
+		}
+	}
+
+	@Override
+	public List<Users> listUsers() {
+		try {
+			return usersMapper.listUsers();
+		} catch (Exception e) {
+			LOGGER.info("UsersServiceImpl    listUsers  查询异常----" + e.toString());
 			return null;
 		}
 	}

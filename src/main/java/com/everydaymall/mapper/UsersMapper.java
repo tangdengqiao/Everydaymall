@@ -1,5 +1,7 @@
 package com.everydaymall.mapper;
 
+import java.util.List;
+
 import com.everydaymall.entity.Users;
 
 public interface UsersMapper {
@@ -31,4 +33,10 @@ public interface UsersMapper {
 	 * @return
 	 */
 	Users selectByUsers(Users users);
+	
+	/**
+	 * 查询所有用户
+	 * @return
+	 */
+	List<Users> listUsers();
 }

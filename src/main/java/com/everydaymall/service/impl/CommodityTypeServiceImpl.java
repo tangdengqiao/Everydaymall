@@ -44,7 +44,7 @@ public class CommodityTypeServiceImpl implements ICommodityTypeService {
 			List<CommodityType> listCommodityTypeLimit = commodityTypeMapper.listCommodityType();
 			return listCommodityTypeLimit;
 		} catch (Exception e) {
-			LOGGER.info("CommodityTypeServiceImpl    listCommodity  查询异常----" + e.toString());
+			LOGGER.info("CommodityTypeServiceImpl    listCommodityType  查询异常----" + e.toString());
 			return null;
 		}
 	}
@@ -53,11 +53,11 @@ public class CommodityTypeServiceImpl implements ICommodityTypeService {
 	 * 根据类别IdType查询类别名称
 	 */
 	@Override
-	public String selectTypeNameIdType(String IdType) {
+	public CommodityType selectTypeNameIdType(String IdType) {
 		try {
 			return commodityTypeMapper.selectTypeNameIdType(IdType);
 		} catch (Exception e) {
-			LOGGER.info("CommodityTypeServiceImpl    listCommodity  查询异常----" + e.toString());
+			LOGGER.info("CommodityTypeServiceImpl    selectTypeNameIdType  查询异常----" + e.toString());
 			return null;
 		}
 	}

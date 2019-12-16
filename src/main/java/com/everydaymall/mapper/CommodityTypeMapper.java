@@ -34,5 +34,5 @@ public interface CommodityTypeMapper {
       * @param IdType
       * @return
       */
-     String selectTypeNameIdType(String IdType);
+     CommodityType selectTypeNameIdType(String IdType);
 }

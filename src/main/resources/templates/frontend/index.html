@@ -35,12 +35,12 @@
               </a>
               <nav>
                 <ul class="menu hidden-xs">
-                 <li><a href="/home/doFrontendHome">首页</a></li>
-		  <li><a href="shop.html">店铺清单</a></li>
-		  <li><a href="shop-detail.html">店铺详情</a><li>
-		  <li><a href="wish-list.html">心愿单</a></li>
-		  <li><a href="shop-cart.html">购物车</a></li>
-		  <li><a href="check-out.html">查看</a></li>
+                  <li><a th:href="@{/home/doFrontendHome}">首页</a></li>
+				  <li><a href="shop.html">店铺清单</a></li>
+				  <li><a href="shop-detail.html">店铺详情</a><li>
+				  <li><a href="wish-list.html">心愿单</a></li>
+				  <li><a href="shop-cart.html">购物车</a></li>
+				  <li><a href="check-out.html">查看</a></li>
                 </ul>
               </nav>
               <aside class="right">
@@ -131,7 +131,7 @@
                 <div class="product product-style-2">
                   <div class="img-wrapper">
                     <a>
-                      <img class="img-responsive" th:src="${listCommodity.commodityPicture}" alt="product thumbnail" />
+                      <img th:onclick="javascript:doFrontendShopDetail([[${listCommodity.idCommodity}]]);" class="img-responsive" th:src="${listCommodity.commodityPicture}" alt="product thumbnail" />
                     </a>
                     <div class="product-control-wrapper bottom-right">
                       <div class="wrapper-control-item">
@@ -157,7 +157,7 @@
                       <h3>
                         <a class="product-name" href="#">[[${listCommodity.commodityName}]]</a>
                       </h3>
-                      <span class="price">$[[${listCommodity.commodityPrice}]]</span>
+                      <span class="price">[[${listCommodity.commodityPrice}]]￥</span>
                     </figcaption>
                   </div>
                 </div>
@@ -649,6 +649,11 @@
 			}
     	});
 	}
+	
+	//跳转商品详情方法
+    function doFrontendShopDetail(idCommodity){
+    	window.location.href=[[@{/commoditydetails/doFrontendShopDetail}]]+"?idCommodity="+idCommodity;
+    }
 	
     </script>
   </body>

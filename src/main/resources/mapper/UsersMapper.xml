@@ -176,7 +176,7 @@
       user_state = #{userState,jdbcType=INTEGER}
     where id_index = #{idIndex,jdbcType=INTEGER}
   </update>
- <!--  自定义 -->
+ 	<!--  自定义 -->
 	<!-- 根据用户名查询用户 -->
 	<select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
         select *
@@ -191,4 +191,11 @@
         where user_name = #{userName,jdbcType=VARCHAR}
         and user_pwd = #{userPwd,jdbcType=VARCHAR}
     </select>
+    <!-- 查询所有用户 -->
+     <select id="listUsers"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where 1=1
+  </select>
 </mapper>

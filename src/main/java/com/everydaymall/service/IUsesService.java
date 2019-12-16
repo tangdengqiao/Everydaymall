@@ -1,5 +1,7 @@
 package com.everydaymall.service;
 
+import java.util.List;
+
 import com.everydaymall.entity.Users;
 
 public interface IUsesService {
@@ -26,5 +28,11 @@ public interface IUsesService {
 	 * @return
 	 */
 	Users selectByUsers(Users users);
+	
+	/**
+	 * 查询所有用户
+	 * @return
+	 */
+	List<Users> listUsers();
 
 }
