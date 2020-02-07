@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../frontend/css/main.css" />
   </head>
   <body class="animsition">
     <div class="shop-cart" id="page">
@@ -27,16 +27,16 @@
           <div class="row">
             <div class="header-1-inner">
               <a class="brand-logo animsition-link" href="index.html">
-                <img class="img-responsive" src="images/logo.png" alt="" />
+                <img class="img-responsive" src="../frontend/images/logo.png" alt="" />
               </a>
               <nav>
                 <ul class="menu hidden-xs">
-                  <li><a href="index.html">Home</a></li>
-				  <li><a href="shop.html">Shop List</a></li>
-				  <li><a href="shop-detail.html">Shop Detail</a><li>
-				  <li><a href="wish-list.html">Wishlist</a></li>
-				  <li><a href="shop-cart.html">Shop Cart</a></li>
-				  <li><a href="check-out.html">Checkout</a></li>
+                   <li><a th:href="@{/home/doFrontendHome}">首页</a></li>
+				  <li><a href="shop.html">店铺清单</a></li>
+				  <li><a href="shop-detail.html">店铺详情</a><li>
+				  <li><a href="wish-list.html">心愿单</a></li>
+				  <li><a href="shop-cart.html">购物车</a></li>
+				  <li><a href="check-out.html">查看</a></li>
                 </ul>
               </nav>
               <aside class="right">
@@ -85,99 +85,44 @@
         </div>
       </header>
       <section class="sub-header shop-detail-1">
-        <img class="rellax bg-overlay" src="images/sub-header/013.jpg" alt="">
+        <img class="rellax bg-overlay" src="../frontend/images/sub-header/013.jpg" alt="">
         <div class="overlay-call-to-action"></div>
-        <h3 class="heading-style-3">Shop Cart</h3>
+        <h3 class="heading-style-3">购物车</h3>
       </section>
       <section class="boxed-sm">
         <div class="container">
-          <div class="woocommerce">
+          <div id="woocommerce" class="woocommerce">
             <form class="woocommerce-cart-form">
-              <table class="woocommerce-cart-table">
+              <table class="woocommerce-cart-table" >
                 <thead>
                   <tr>
-                    <th class="product-thumbnail">Product</th>
-                    <th class="product-name"></th>
-                    <th class="product-weight">Weight</th>
-                    <th class="product-quantity">Quantity</th>
-                    <th class="product-price">Price</th>
-                    <th class="product-subtotal">Total</th>
-                    <th class="product-remove"></th>
+                    <th style="width: 20px"><input id="parentlevel"  type="checkbox"></th>
+                    <th class="product-thumbnail">商品图片</th>
+                    <th class="product-name">商品名</th>
+                    <th class="product-weight">商品描述</th>
+                    <th class="product-quantity">商品数量</th>
+                    <th class="product-price">商品单价</th>
+                    <th class="product-subtotal">商品总价</th>
+                    <th class="product-remove">操作</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="images/product/thumb-cart-01.jpg" alt="product-thumbnail">
-                    </td>
-                    <td class="product-name" data-title="Product">
-                      <a class="product-name" href="#">Salad</a>
-                    </td>
-                    <td class="product-weight" data-title="Weight">0.4 kg</td>
-                    <td class="product-quantity" data-title="Quantity">
-                      <input class="qty" step="1" min="0" max="" name="product-name" value="1" title="Qty" size="4" pattern="[0-9]*" inputmode="numeric" type="number">
-                    </td>
-                    <td class="product-price" data-title="Price">$2.26</td>
-                    <td class="product-subtotal" data-title="Total">$2.26</td>
-                    <td class="product-remove">
-                      <a class="remove" href="#" aria-label="Remove this item">×</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="images/product/thumb-cart-02.jpg" alt="product-thumbnail">
-                    </td>
-                    <td class="product-name" data-title="Product">
-                      <a class="product-name" href="#">Apple</a>
-                    </td>
-                    <td class="product-weight" data-title="Weight">0.4 kg</td>
-                    <td class="product-quantity" data-title="Quantity">
-                      <input class="qty" step="1" min="0" max="" name="product-name" value="1" title="Qty" size="4" pattern="[0-9]*" inputmode="numeric" type="number">
-                    </td>
-                    <td class="product-price" data-title="Price">$2.26</td>
-                    <td class="product-subtotal" data-title="Total">$2.26</td>
-                    <td class="product-remove">
-                      <a class="remove" href="#" aria-label="Remove this item">×</a>
-                    </td>
-                  </tr>
+                <tbody id="listShoppingcart">
+                  
                 </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="7">
-                      <div class="form-coupon organic-form">
-                        <div class="form-group">
-                          <input class="form-control pill" placeholder="Coupon Code">
-                        </div>
-                        <div class="form-group">
-                          <a class="btn btn-brand pill" href="#">APPLY COUPON</a>
-                        </div>
-                        <div class="form-group update-cart">
-                          <a class="btn btn-brand-ghost pill">UPDATE CART</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tfoot>
               </table>
             </form>
             <div class="cart_totals">
-              <h3 class="title">Cart Total</h3>
+              <h3 class="title">购物车总计</h3>
               <div class="row">
                 <div class="col-md-8">
                   <table class="woocommerce-cart-subtotal">
                     <tbody>
                       <tr>
-                        <th>Subtotal</th>
-                        <td data-title="Subtotal">$6.31</td>
-                      </tr>
-                      <tr>
-                        <th>Total</th>
-                        <td data-title="Total">$6.31</td>
+                      <th >总价</th><td id="Totalprice" data-title="Total">0￥</td>
                       </tr>
                     </tbody>
                   </table>
-                  <div class="proceed-to-checkout">
-                    <a class="btn btn-brand pill" href="#">PROCEED TO CHECKOUT</a>
+                  <div id="proceed-to-checkout" class="proceed-to-checkout">
                   </div>
                 </div>
               </div>
@@ -186,13 +131,13 @@
         </div>
       </section>
     </div>
-    <footer class="footer-style-1">
+   <footer class="footer-style-1">
       <div class="container">
         <div class="row">
           <div class="footer-style-1-inner">
             <div class="widget-footer widget-text col-first col-small">
               <a href="#">
-                <img class="logo-footer" src="images/logo.png" alt="Logo Organic" />
+                <img class="logo-footer" src="../frontend/../frontend/images/logo.png" alt="Logo Organic" />
               </a>
               <div class="widget-link">
                 <ul>
@@ -213,60 +158,60 @@
             </div>
             <div class="widget-footer widget-link col-second col-medium">
               <div class="list-link">
-                <h4 class="h4 heading">SHOP</h4>
+                <h4 class="h4 heading">店</h4>
                 <ul>
                   <li>
-                    <a href="#">Food</a>
+                    <a href="#">餐饮</a>
                   </li>
                   <li>
-                    <a href="#">Farm</a>
+                    <a href="#">农场</a>
                   </li>
                   <li>
-                    <a href="#">Health</a>
+                    <a href="#">健康</a>
                   </li>
                   <li>
-                    <a href="#">Organic</a>
+                    <a href="#">有机</a>
                   </li>
                 </ul>
               </div>
               <div class="list-link">
-                <h4 class="h4 heading">SUPPORT</h4>
+                <h4 class="h4 heading">支持</h4>
                 <ul>
                   <li>
-                    <a href="#">Contact Us</a>
+                    <a href="#">联系我们</a>
                   </li>
                   <li>
-                    <a href="#">FAQ</a>
+                    <a href="#">常见问题</a>
                   </li>
                   <li>
-                    <a href="#">Privacy Policy</a>
+                    <a href="#">隐私政策</a>
                   </li>
                   <li>
-                    <a href="#">Blog</a>
+                    <a href="#">博客</a>
                   </li>
                 </ul>
               </div>
               <div class="list-link">
-                <h4 class="h4 heading">MY ACCOUNT</h4>
+                <h4 class="h4 heading">我的账户</h4>
                 <ul>
                   <li>
-                    <a href="#">Sign In</a>
+                    <a href="#">登入</a>
                   </li>
                   <li>
-                    <a href="#">My Cart</a>
+                    <a href="#">我的购物车</a>
                   </li>
                   <li>
-                    <a href="#">My Wishlist</a>
+                    <a href="#">我的收藏</a>
                   </li>
                   <li>
-                    <a href="#">Check Out</a>
+                    <a href="#">查看</a>
                   </li>
                 </ul>
               </div>
             </div>
             <div class="widget-footer widget-newsletter-footer col-last col-small">
-              <h4 class="h4 heading">NEWSLETTER</h4>
-              <p>Subscribe now to get daily updates</p>
+              <h4 class="h4 heading">通讯</h4>
+              <p>立即订阅以获取每日更新</p>
               <form class="organic-form form-inline btn-add-on circle border">
                 <div class="form-group">
                   <input class="form-control pill transparent" placeholder="Your Email..." type="email" />
@@ -283,27 +228,27 @@
         <div class="container">
           <div class="row">
             <div class="copy-right-inner">
-              <p>Copyright © 2017 Designed by AuThemes. All rights reserved.</p>
+              <p>版权所有©2019由tangdengqiao设计.版权所有.</p>
               <div class="widget widget-footer widget-footer-creadit-card">
                 <ul class="list-unstyle">
                   <li>
                     <a href="#">
-                      <img src="images/icons/creadit-card-01.png" alt="creadit card" />
+                      <img src="../frontend/../frontend/images/icons/creadit-card-01.png" alt="creadit card" />
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img src="images/icons/creadit-card-02.png" alt="creadit card" />
+                      <img src="../frontend/../frontend/images/icons/creadit-card-02.png" alt="creadit card" />
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img src="images/icons/creadit-card-03.png" alt="creadit card" />
+                      <img src="../frontend/../frontend/images/icons/creadit-card-03.png" alt="creadit card" />
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img src="images/icons/creadit-card-04.png" alt="creadit card" />
+                      <img src="../frontend/../frontend/images/icons/creadit-card-04.png" alt="creadit card" />
                     </a>
                   </li>
                 </ul>
@@ -327,36 +272,36 @@
                 <div class="woocommerce-product-gallery">
                   <div class="main-carousel-product-quick-view">
                     <div class="item">
-                      <img class="img-responsive" src="images/product/01.jpg" alt="product thumbnail" />
+                      <img class="img-responsive" src="../frontend/images/product/01.jpg" alt="product thumbnail" />
                     </div>
                     <div class="item">
-                      <img class="img-responsive" src="images/product/02.jpg" alt="product thumbnail" />
+                      <img class="img-responsive" src="../frontend/images/product/02.jpg" alt="product thumbnail" />
                     </div>
                     <div class="item">
-                      <img class="img-responsive" src="images/product/03.jpg" alt="product thumbnail" />
+                      <img class="img-responsive"  src="../frontend/images/product/03.jpg" alt="product thumbnail" />
                     </div>
                     <div class="item">
-                      <img class="img-responsive" src="images/product/04.jpg" alt="product thumbnail" />
+                      <img class="img-responsive" src="../frontend/images/product/04.jpg" alt="product thumbnail" />
                     </div>
                     <div class="item">
-                      <img class="img-responsive" src="images/product/05.jpg" alt="product thumbnail" />
+                      <img class="img-responsive" src="../frontend/images/product/05.jpg" alt="product thumbnail" />
                     </div>
                   </div>
                   <div class="thumbnail-carousel-product-quickview">
                     <div class="item">
-                      <img class="img-responsive" src="images/product/01.jpg" alt="product thumbnail" />
+                      <img class="img-responsive" src="../frontend/images/product/01.jpg" alt="product thumbnail" />
                     </div>
                     <div class="item">
-                      <img class="img-responsive" src="images/product/02.jpg" alt="product thumbnail" />
+                      <img class="img-responsive" src="../frontend/images/product/02.jpg" alt="product thumbnail" />
                     </div>
                     <div class="item">
-                      <img class="img-responsive" src="images/product/03.jpg" alt="product thumbnail" />
+                      <img class="img-responsive" src="../frontend/images/product/03.jpg" alt="product thumbnail" />
                     </div>
                     <div class="item">
-                      <img class="img-responsive" src="images/product/04.jpg" alt="product thumbnail" />
+                      <img class="img-responsive" src="../frontend/images/product/04.jpg" alt="product thumbnail" />
                     </div>
                     <div class="item">
-                      <img class="img-responsive" src="images/product/05.jpg" alt="product thumbnail" />
+                      <img class="img-responsive" src="../frontend/images/product/05.jpg" alt="product thumbnail" />
                     </div>
                   </div>
                 </div>
@@ -413,22 +358,22 @@
                         </a>
                       </li>
                       <li>
-                        <a class="pinterest" data-toggle="tooltip" title="Pinterest" href="http://www.pinterest.com/authemes">
+                        <a  class="pinterest" data-toggle="tooltip" title="Pinterest" href="http://www.pinterest.com/authemes">
                           <i class="fa fa-pinterest"></i>
                         </a>
                       </li>
                       <li>
-                        <a class="twitter" data-toggle="tooltip" title="Twitter" href="http://www.twitter.com/authemes">
+                        <a  class="twitter" data-toggle="tooltip" title="Twitter" href="http://www.twitter.com/authemes">
                           <i class="fa fa-twitter"></i>
                         </a>
                       </li>
                       <li>
-                        <a class="google-plus" data-toggle="tooltip" title="Google Plus" href="https://plus.google.com/authemes">
+                        <a  class="google-plus" data-toggle="tooltip" title="Google Plus" href="https://plus.google.com/authemes">
                           <i class="fa fa-google-plus"></i>
                         </a>
                       </li>
                       <li>
-                        <a class="instagram" data-toggle="tooltip" title="Instagram" href="https://instagram.com/authemes">
+                        <a  onclick="" class="instagram" data-toggle="tooltip" title="Instagram" href="https://instagram.com/authemes">
                           <i class="fa fa-instagram"></i>
                         </a>
                       </li>
@@ -441,22 +386,159 @@
         </div>
       </div>
     </div>
-    <script src="js/library/jquery.min.js"></script>
-    <script src="js/library/bootstrap.min.js"></script>
-    <script src="js/function-check-viewport.js"></script>
-    <script src="js/library/slick.min.js"></script>
-    <script src="js/library/select2.full.min.js"></script>
-    <script src="js/library/imagesloaded.pkgd.min.js"></script>
-    <script src="js/library/jquery.mmenu.all.min.js"></script>
-    <script src="js/library/rellax.min.js"></script>
-    <script src="js/library/isotope.pkgd.min.js"></script>
-    <script src="js/library/bootstrap-notify.min.js"></script>
-    <script src="js/library/bootstrap-slider.js"></script>
-    <script src="js/library/in-view.min.js"></script>
-    <script src="js/library/countUp.js"></script>
-    <script src="js/library/animsition.min.js"></script>
-    <script src="js/global.js"></script>
-    <script src="js/config-mm-menu.js"></script>
+    <script src="../frontend/js/library/jquery.min.js"></script>
+    <script src="../frontend/js/library/bootstrap.min.js"></script>
+    <script src="../frontend/js/function-check-viewport.js"></script>
+    <script src="../frontend/js/library/slick.min.js"></script>
+    <script src="../frontend/js/library/select2.full.min.js"></script>
+    <script src="../frontend/js/library/imagesloaded.pkgd.min.js"></script>
+    <script src="../frontend/js/library/jquery.mmenu.all.min.js"></script>
+    <script src="../frontend/js/library/rellax.min.js"></script>
+    <script src="../frontend/js/library/isotope.pkgd.min.js"></script>
+    <script src="../frontend/js/library/bootstrap-notify.min.js"></script>
+    <script src="../frontend/js/library/bootstrap-slider.js"></script>
+    <script src="../frontend/js/library/in-view.min.js"></script>
+    <script src="../frontend/js/library/countUp.js"></script>
+    <script src="../frontend/js/library/animsition.min.js"></script>
+    <script src="../frontend/js/global.js"></script>
+    <script src="../frontend/js/config-mm-menu.js"></script>
   </body>
+  <script type="text/javascript" th:inline="javascript">
+  
+  //获取购物车里面的所有商品
+  $(function(){
+	 $.ajax({
+			url : [[@{/shoppingcart/listShoppingcart}]],
+			dataType : 'json',
+			type : 'POST',
+			cache : false,
+			success : function(list) {
+				
+				//展示购物车里面的商品
+				var listShoppingcart="";
+				for(var i=0; i<list.length; i++){
+					listShoppingcart+='<tr><td><input value="'+list[i].idIndex+'" name="sublevel" type="checkbox" ></td><td class="product-thumbnail"><img style="widows: 100px;height: 100px;" src="'+list[i].commodityPicture+'" alt="product-thumbnail"></td><td class="product-name" data-title="Product"><a  class="product-name" href="#">'+list[i].commodityName+'</a></td><td class="product-weight" data-title="Weight">'+list[i].commodityDescribe+'</td><td class="product-quantity" data-title="Quantity"><a onclick="plusNumber('+list[i].idIndex+','+list[i].shoppingcartNumber+')"   id="+" style="color: black;cursor: pointer;">+</a>&nbsp&nbsp&nbsp'+list[i].shoppingcartNumber+'&nbsp&nbsp&nbsp<a onclick="reduceNumber('+list[i].idIndex+','+list[i].shoppingcartNumber+')"  id="-"  style="color: black; cursor: pointer;">-</a></td><td class="product-price" data-title="Price">'+list[i].shoppingcartPrice+'￥</td><td class="product-subtotal" data-title="Total">'+list[i].shoppingcartPrice*list[i].shoppingcartNumber+'￥</td><td class="product-remove"><a style="cursor: pointer;" class="remove"  aria-label="Remove this item">+</a><a class="remove" style="cursor: pointer;" onclick="delShoppingcart('+list[i].idIndex+')" aria-label="Remove this item">×</a></td></tr>';
+				$("#listShoppingcart").html(listShoppingcart);
+				}
+				
+				
+				
+				//批量删除
+				var proceedtocheckout='<a onclick="batchdel()" class="btn btn-brand pill" style="cursor: pointer;">清除所选</a><a class="btn btn-brand pill" style="cursor: pointer;">进行结算</a>';
+				$("#proceed-to-checkout").html(proceedtocheckout);
+			},
+			error : function(data) {
+				console.log(data);
+			}
+		});
+  });
+  
+  
+  //删除购物车的商品
+  function delShoppingcart(idIndex){
+	  $.ajax({
+			url : [[@{/shoppingcart/delShoppingcart}]],
+			dataType : 'json',
+			type : 'POST',
+			data : {idIndex:idIndex},
+			cache : false,
+			success : function(data) {
+				if (data.status == 200) {
+					alert(data.message);
+					window.location.reload();
+				} else {
+					alert(data.message);
+				}
+			},
+			error : function(data) {
+				console.log(data);
+			}
+		});
+  }
+  
+  //增加商品数量
+  function plusNumber(idIndex,number){
+	  $.ajax({
+			url : [[@{/shoppingcart/plusNumber}]],
+			dataType : 'json',
+			type : 'POST',
+			data : {idIndex:idIndex,number,number},
+			cache : false,
+			success : function(data) {
+				window.location.reload();
+				console.log(data);
+			},
+			error : function(data) {
+				console.log(data);
+			}
+		});
+  }
+  
+  //减少商品数量
+  function reduceNumber(idIndex,number){
+	  if(number>1){
+	  $.ajax({
+			url : [[@{/shoppingcart/reduceNumber}]],
+			dataType : 'json',
+			type : 'POST',
+			data : {idIndex:idIndex,number,number},
+			cache : false,
+			success : function(data) {
+				window.location.reload();
+				console.log(data);
+			},
+			error : function(data) {
+				console.log(data);
+			}
+		});
+	  }
+  }
+  
+  // 全选/反选
+  $("#parentlevel").click(function(){
+	  var parentlevel=document.getElementById("parentlevel");
+	  var sublevel=document.getElementsByName("sublevel");
+	  if(parentlevel.checked){
+          for (var i = 0; i < sublevel.length; i++) {
+        	  sublevel[i].checked = true;
+          }
+      }else{
+          for (var i = 0; i < sublevel.length; i++) {
+        	  sublevel[i].checked = false;
+          }
+      }
+  });
+  
+  
+  //批量删除
+ function batchdel(){
+	  var idIndex="";
+	  var sublevel=document.getElementsByName("sublevel");
+	  for(var i=0;i<sublevel.length;i++){
+          if(sublevel[i].checked){
+        	  idIndex=idIndex+sublevel[i].value+",";
+          }
+      }
+	  $.ajax({
+			url : [[@{/shoppingcart/batchdel}]],
+			dataType : 'json',
+			type : 'POST',
+			data : {idIndex:idIndex.toString()},
+			cache : false,
+			success : function(data) {
+				if (data.status == 200) {
+					alert(data.message);
+					window.location.reload();
+				} else {
+					alert(data.message);
+				}
+			},
+			error : function(data) {
+				console.log(data);
+			}
+		});
+  }
+  
+  </script>
 </html>
 

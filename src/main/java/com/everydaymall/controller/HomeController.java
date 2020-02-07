@@ -76,6 +76,7 @@ public class HomeController {
 	 * @return
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unused")
 	@RequestMapping(value = "/selectCommodity", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Object> selectCommodity(Integer idIndex) throws Exception {
@@ -133,7 +134,7 @@ public class HomeController {
 			Shoppingcart shoppingcart = new Shoppingcart();
 			if (shoppingcarta == null) {
 				shoppingcart.setIdCommodity(commodity.getIdCommodity());
-				shoppingcart.setShoppingcartPrice(commodity.getCommodityPrice() * number);
+				shoppingcart.setShoppingcartPrice(commodity.getCommodityPrice());
 				shoppingcart.setShoppingcartNumber(number);
 				shoppingcart.setShoppingcartCreateby(users.getIdUser());
 				if (shoppingcartService.saveShoppingcart(shoppingcart) > Constants.SAVEREGISTER_SUCESS) {

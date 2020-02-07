@@ -560,7 +560,7 @@
     <script type="text/javascript" th:inline="javascript">
     function myCommodityDetails(idIndex){
     	$.ajax({
-			url : [[@{/home/selectCommodity}]],
+			url : [[@{/commoditydetails/selectCommodity}]],
 			dataType : 'json',
 			type : 'POST',
 			data : {idIndex:idIndex},
@@ -615,7 +615,7 @@
     //收藏
     function saveCollection(idCommodity){
     	$.ajax({
-			url : [[@{/home/saveCollection}]],
+			url : [[@{/commoditydetails/saveCollection}]],
 			dataType : 'json',
 			type : 'POST',
 			data : {idCommodity:idCommodity},
@@ -663,7 +663,7 @@
     function saveShoppingcart(idIndex){
     	var number=$('#number').val();
     	$.ajax({
-			url : [[@{/home/saveShoppingcart}]],
+			url : [[@{/commoditydetails/saveShoppingcart}]],
 			dataType : 'json',
 			type : 'POST',
 			data : {idIndex:idIndex,number:number},
@@ -685,7 +685,7 @@
     function saveShoppingcart01(idIndex){
     	var number=$('#number01').val();
     	$.ajax({
-			url : [[@{/home/saveShoppingcart}]],
+			url : [[@{/commoditydetails/saveShoppingcart}]],
 			dataType : 'json',
 			type : 'POST',
 			data : {idIndex:idIndex,number:number},
