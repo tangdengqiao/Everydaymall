@@ -36,11 +36,8 @@
               <nav>
                 <ul class="menu hidden-xs">
                   <li><a th:href="@{/home/doFrontendHome}">首页</a></li>
-				  <li><a href="shop.html">店铺清单</a></li>
-				  <li><a href="shop-detail.html">店铺详情</a><li>
-				  <li><a href="wish-list.html">心愿单</a></li>
 				  <li><a th:href="@{/shoppingcart/doFrontendShopCart}">购物车</a></li>
-				  <li><a href="check-out.html">查看</a></li>
+				  <li><a th:href="@{/user/doMy}">我的天天商城</a></li>
                 </ul>
               </nav>
               <aside class="right">
@@ -540,121 +537,7 @@
     <script src="../frontend/js/config-carousel-product-quickview.js"></script>
     <!-- Demo Only-->
     <script type="text/javascript" th:inline="javascript">
-    function myCommodityDetails(idIndex){
-    	$.ajax({
-			url : [[@{/home/selectCommodity}]],
-			dataType : 'json',
-			type : 'POST',
-			data : {idIndex:idIndex},
-			cache : false,
-			success : function(list) {
-		        for (var i = 0; i < list.length; i++) {
-		        		
-				/* 商品名和价格 */
-				var headerdesc='<h2 class="product-title">'+list[0].commodityName+'</h2><p class="price">'+list[0].commodityPrice+'￥</p>';
-				$("#header-desc").html(headerdesc);
-				
-				/* 描述 */
-				var woocommerceproductdetailsshortdescription='<p>'+list[0].commodityDescribe+'.</p>';
-				$("#woocommerce-product-details-short-description").html(woocommerceproductdetailsshortdescription);
-				
-				/* 图片 */
-				var item01='<img class="img-responsive" src="'+list[0].commodityPicture+'" alt="product thumbnail" />';
-				$(".item01").html(item01); 
-				
-				
-				$(".group-btn-control-wrapper").html(item01); 
-				/* 分类 、标签 */
-				var typeName;
-				var typeLabel;
-				for(var j = 0; j < list[1].length; j++){
-					if(list[0].commodityType==list[1][j].idType){
-						typeName=list[1][j].typeName;
-						typeLabel=list[1][j].typeLabel;
-					}
-				}	
-				var postedin='分类:<a rel="tag">'+typeName+'</a>';
-				$("#posted-in").html(postedin);
-				
-				var taggedas='标签:<a rel="tag">'+typeLabel+'</a>'
-				$("#tagged-as").html(taggedas);
-				
-				/* 编号 */
-				var id='编号:<a>'+list[0].idIndex+'</a>';
-				$("#id").html(id); 
-				
-				/* 增加购物车 */
-		        var groupbtncontrolwrapper='<a  onclick="saveShoppingcart('+list[0].idIndex+')" class="btn btn-brand no-radius">添加到购物车</a><button class="btn btn-wishlist btn-brand-ghost no-radius"><i class="fa fa-heart"></i></button>';
-		        $(".group-btn-control-wrapper").html(groupbtncontrolwrapper); 
-		        }
-			},
-			error : function(data) {
-				console.log(data);
-			}
-		});
-    }
-    
-    //收藏
-    function saveCollection(idCommodity){
-    	$.ajax({
-			url : [[@{/home/saveCollection}]],
-			dataType : 'json',
-			type : 'POST',
-			data : {idCommodity:idCommodity},
-			cache : false,
-			success : function(data) {
-				if (data.status == 200) {
-					alert(data.message);
-				} else {
-					alert(data.message);
-				}
-			},
-			error : function(data) {
-				console.log(data);
-			}
-		});
-    }
-    
-	//数量增加操作
-     $("#add").click(function(){
-    	$('#number').val(parseInt($('#number').val())+1);
-     })
-    
-  	//数量减少操作
-     $("#min").click(function(){
-    	$('#number').val(parseInt($('#number').val())-1)
-        if(parseInt($("#number").val())==0){
-        	$('#number').val(parseInt($('#number').val())+1);
-        }
-     })
-    
-    //增加购物车
-    function saveShoppingcart(idIndex){
-    	var number=$('#number').val();
-    	$.ajax({
-			url : [[@{/home/saveShoppingcart}]],
-			dataType : 'json',
-			type : 'POST',
-			data : {idIndex:idIndex,number:number},
-			cache : false,
-			success : function(data) {
-				if (data.status == 200) {
-					alert(data.message);
-				} else {
-					alert(data.message);
-				}
-			},
-			error : function(data) {
-				console.log(data);
-			}
-    	});
-	}
-	
-	//跳转商品详情方法
-    function doFrontendShopDetail(idCommodity){
-    	window.location.href=[[@{/commoditydetails/doFrontendShopDetail}]]+"?idCommodity="+idCommodity;
-    }
-	
+  
     </script>
   </body>
 </html>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.everydaymall.common.constants.Constants;
 import com.everydaymall.common.result.ResponseResult;
@@ -104,6 +105,26 @@ public class UsersController {
 		} else {
 			return new ResponseResult<Object>(500, "填充的数据为空");
 		}
+	}
+	
+	/**
+	 * 跳转到我的天天商城页面
+	 * 
+	 * @return
+	 */
+	@SuppressWarnings("unused")
+	@RequestMapping("/doMy")
+	public ModelAndView doMy(ModelAndView modelAndView, HttpServletRequest request)throws Exception{
+		HttpSession session = request.getSession();
+		Users users = (Users) session.getAttribute("user");
+		if (users == null) {
+			modelAndView.setViewName("redirect:/user/doLogin");
+		} else {
+			Users user = usesService.selectByPrimaryKey(users.getIdIndex());
+			modelAndView.addObject("user", "user");
+			modelAndView.setViewName("frontend/my-tiantianshangcheng");
+		}
+		return modelAndView;
 	}
 
 }

@@ -34,5 +34,12 @@ public interface IUsesService {
 	 * @return
 	 */
 	List<Users> listUsers();
+	
+	/**
+	 * 根据idIndex查询用户
+	 * @param idIndex
+	 * @return
+	 */
+	Users selectByPrimaryKey(Integer idIndex);
 
 }

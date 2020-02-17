@@ -31,12 +31,10 @@
               </a>
               <nav>
                 <ul class="menu hidden-xs">
-                   <li><a th:href="@{/home/doFrontendHome}">首页</a></li>
-				  <li><a href="shop.html">店铺清单</a></li>
-				  <li><a href="shop-detail.html">店铺详情</a><li>
-				  <li><a href="wish-list.html">心愿单</a></li>
-				  <li><a href="shop-cart.html">购物车</a></li>
-				  <li><a href="check-out.html">查看</a></li>
+                  <li><a th:href="@{/home/doFrontendHome}">天天商城首页</a></li>
+				  <li><a th:href="@{/shoppingcart/doFrontendShopCart}">我的购物车</a></li>
+				  <li><a href="shop-detail.html">我的收藏</a><li>
+				  <li><a href="shop-detail.html">我的收货地址</a><li>
                 </ul>
               </nav>
               <aside class="right">
@@ -87,48 +85,18 @@
       <section class="sub-header shop-detail-1">
         <img class="rellax bg-overlay" src="../frontend/images/sub-header/013.jpg" alt="">
         <div class="overlay-call-to-action"></div>
-        <h3 class="heading-style-3">购物车</h3>
+        <h3 class="heading-style-3">我的资料</h3>
       </section>
       <section class="boxed-sm">
-        <div class="container">
-          <div id="woocommerce" class="woocommerce">
-            <form class="woocommerce-cart-form">
-              <table class="woocommerce-cart-table" >
-                <thead>
-                  <tr>
-                    <th style="width: 20px"><input id="parentlevel"  type="checkbox"></th>
-                    <th class="product-thumbnail">商品图片</th>
-                    <th class="product-name">商品名</th>
-                    <th class="product-weight">商品描述</th>
-                    <th class="product-quantity">商品数量</th>
-                    <th class="product-price">商品单价</th>
-                    <th class="product-subtotal">商品总价</th>
-                    <th class="product-remove">操作</th>
-                  </tr>
-                </thead>
-                <tbody id="listShoppingcart">
-                  
-                </tbody>
-              </table>
-            </form>
-            <div class="cart_totals">
-              <h3 class="title">购物车总计</h3>
-              <div class="row">
-                <div class="col-md-8">
-                  <table class="woocommerce-cart-subtotal">
-                    <tbody>
-                      <tr>
-                      <th >总价</th><td id="Totalprice" data-title="Total">0￥</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div id="proceed-to-checkout" class="proceed-to-checkout">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
       </section>
     </div>
    <footer class="footer-style-1">
@@ -137,7 +105,7 @@
           <div class="footer-style-1-inner">
             <div class="widget-footer widget-text col-first col-small">
               <a href="#">
-                <img class="logo-footer" src="../frontend/../frontend/images/logo.png" alt="Logo Organic" />
+                <img class="logo-footer" src="../frontend/images/logo.png" alt="Logo Organic" />
               </a>
               <div class="widget-link">
                 <ul>
@@ -233,22 +201,22 @@
                 <ul class="list-unstyle">
                   <li>
                     <a href="#">
-                      <img src="../frontend/../frontend/images/icons/creadit-card-01.png" alt="creadit card" />
+                      <img src="../frontend/images/icons/creadit-card-01.png" alt="creadit card" />
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img src="../frontend/../frontend/images/icons/creadit-card-02.png" alt="creadit card" />
+                      <img src="../frontend/images/icons/creadit-card-02.png" alt="creadit card" />
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img src="../frontend/../frontend/images/icons/creadit-card-03.png" alt="creadit card" />
+                      <img src="../frontend/images/icons/creadit-card-03.png" alt="creadit card" />
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img src="../frontend/../frontend/images/icons/creadit-card-04.png" alt="creadit card" />
+                      <img src="../frontend/images/icons/creadit-card-04.png" alt="creadit card" />
                     </a>
                   </li>
                 </ul>
@@ -404,165 +372,7 @@
     <script src="../frontend/js/config-mm-menu.js"></script>
   </body>
   <script type="text/javascript" th:inline="javascript">
-  //页面加载购物车数据
-  $(function (){
-	  Load();
-  });
   
-  //获取购物车里面的所有商品
-  function Load(){
-	 $.ajax({
-			url : [[@{/shoppingcart/listShoppingcart}]],
-			dataType : 'json',
-			type : 'POST',
-			cache : false,
-			success : function(list) {
-				
-				//展示购物车里面的商品
-				var listShoppingcart="";
-				for(var i=0; i<list.length; i++){
-					listShoppingcart+='<tr id="tr_'+list[i].idIndex+'"><td><input onclick="total('+list[i].shoppingcartPrice+','+list[i].shoppingcartNumber+')" class="check" value="'+list[i].idIndex+'" name="sublevel" type="checkbox" ></td><td class="product-thumbnail"><img style="widows: 100px;height: 100px;" src="'+list[i].commodityPicture+'" alt="product-thumbnail"></td><td class="product-name" data-title="Product"><a  class="product-name" href="#">'+list[i].commodityName+'</a></td><td class="product-weight" data-title="Weight">'+list[i].commodityDescribe+'</td><td class="product-quantity" data-title="Quantity"><a onclick="plusNumber('+list[i].idIndex+','+list[i].shoppingcartNumber+')"   id="+" style="color: black;cursor: pointer;">+</a>&nbsp&nbsp&nbsp'+list[i].shoppingcartNumber+'&nbsp&nbsp&nbsp<a onclick="reduceNumber('+list[i].idIndex+','+list[i].shoppingcartNumber+')"  id="-"  style="color: black; cursor: pointer;">-</a></td><td class="product-price" data-title="Price">'+list[i].shoppingcartPrice+'￥</td><td class="product-subtotal" data-title="Total">'+list[i].shoppingcartPrice*list[i].shoppingcartNumber+'￥</td><td class="product-remove"><a style="cursor: pointer;" class="remove"  aria-label="Remove this item">+</a><a class="remove" style="cursor: pointer;" onclick="delShoppingcart('+list[i].idIndex+')" aria-label="Remove this item">×</a></td></tr>';
-				$("#listShoppingcart").html(listShoppingcart);
-				}
-				
-				//批量删除
-				var proceedtocheckout='<a onclick="batchdel()" class="btn btn-brand pill" style="cursor: pointer;">清除所选</a><a class="btn btn-brand pill" style="cursor: pointer;">进行结算</a>';
-				$("#proceed-to-checkout").html(proceedtocheckout);
-			},
-			error : function(data) {
-				console.log(data);
-			}
-		});
-  }
-  
-  
-  //计算所有选中产品总价
-  function total(price,number){
-	  var total = 0;
-	  var checkTrue = $(".check");
-	  if(checkTrue.checked=true){
-	  total+=total+price*number;
-		  alert(total); 
-	  }
-	 /*  $('#total').html(total); */
-  }
-
- 
-  
-  
-  
-  //删除购物车的商品
-  function delShoppingcart(idIndex){
-	  if(window.confirm('你确定要刪除吗?')){
-		  $.ajax({
-				url : [[@{/shoppingcart/delShoppingcart}]],
-				dataType : 'json',
-				type : 'POST',
-				data : {idIndex:idIndex},
-				cache : false,
-				success : function(data) {
-					if (data.status == 200) {
-						alert(data.message);
-						//删除成功之后清除这条数据
-						$("#tr_"+idIndex).remove();
-					} else {
-						alert(data.message);
-					}
-				},
-				error : function(data) {
-					console.log(data);
-				}
-			});
-	  }
-  }
-  
-  //增加商品数量
-  function plusNumber(idIndex,number){
-	  $.ajax({
-			url : [[@{/shoppingcart/plusNumber}]],
-			dataType : 'json',
-			type : 'POST',
-			data : {idIndex:idIndex,number,number},
-			cache : false,
-			success : function(data) {
-				Load();
-			},
-			error : function(data) {
-				console.log(data);
-			}
-		});
-  }
-  
-  //减少商品数量
-  function reduceNumber(idIndex,number){
-	  if(number>1){
-	  $.ajax({
-			url : [[@{/shoppingcart/reduceNumber}]],
-			dataType : 'json',
-			type : 'POST',
-			data : {idIndex:idIndex,number,number},
-			cache : false,
-			success : function(data) {
-				Load();
-			},
-			error : function(data) {
-				console.log(data);
-			}
-		});
-	  }
-  }
-  
-  // 全选/反选
-  $("#parentlevel").click(function(){
-	  var parentlevel=document.getElementById("parentlevel");
-	  var sublevel=document.getElementsByName("sublevel");
-	  if(parentlevel.checked){
-          for (var i = 0; i < sublevel.length; i++) {
-        	  sublevel[i].checked = true;
-          }
-      }else{
-          for (var i = 0; i < sublevel.length; i++) {
-        	  sublevel[i].checked = false;
-          }
-      }
-  });
-  
-  
-  //批量删除
- function batchdel(){
-	  var idIndex="";
-	  var arr=[]; 
-	  var sublevel=document.getElementsByName("sublevel");
-	  for(var i=0;i<sublevel.length;i++){
-          if(sublevel[i].checked){
-        	  idIndex=idIndex+sublevel[i].value+",";
-        	  arr.push(sublevel[i].value);
-          }
-      }
-	  if(window.confirm('你确定要刪除吗?')){
-		  $.ajax({
-				url : [[@{/shoppingcart/batchdel}]],
-				dataType : 'json',
-				type : 'POST',
-				data : {idIndex:idIndex.toString()},
-				cache : false,
-				success : function(data) {
-					if (data.status == 200) {
-						alert(data.message);
-						//删除成功之后清除这条数据
-						for(var i=0; i<arr.length;i++){
-							$("#tr_"+arr[i]).remove();
-						}
-					} else {
-						alert(data.message);
-					}
-				},
-				error : function(data) {
-					console.log(data);
-				}
-			});
-	  }
-  }
   
   </script>
 </html>

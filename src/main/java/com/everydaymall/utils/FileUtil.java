@@ -22,6 +22,9 @@ import java.util.UUID;
 @Component
 public class FileUtil {
     
+	/**
+	 * 获取yml配置文件配置的路径
+	 */
     @Value("${upLoadPath}")
     public String UpLoadPath;
 
@@ -244,19 +247,21 @@ public class FileUtil {
         return filePath.substring(n + 1, filePath.length()).toLowerCase();
     }
 
+    /**
+     * 上传文件
+     * @param file
+     * @param fileType
+     * @return
+     */
     public String uploadFile(MultipartFile file,String fileType) {
-        String tempDir = DateUtil.formatUIDate(new Date()) + "/";
-        String savePath = "upload/" + fileType+"/" + tempDir;
-        String uploadpath=UpLoadPath+savePath;
-        createDir(uploadpath);
         String path = "";
         try {
             if (file != null) {
                 String filename =getRandomFileName(file.getOriginalFilename());
-                FileOutputStream fileOS = new FileOutputStream(uploadpath + filename);
+                FileOutputStream fileOS = new FileOutputStream(UpLoadPath + filename);
                 fileOS.write(file.getBytes());
                 fileOS.close();
-                path = savePath + filename;
+                path = "../upload/"+filename;
             }
         } catch (Exception e) {
             e.printStackTrace();

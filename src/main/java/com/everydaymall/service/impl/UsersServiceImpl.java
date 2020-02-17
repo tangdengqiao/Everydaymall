@@ -72,12 +72,28 @@ public class UsersServiceImpl implements IUsesService {
 		}
 	}
 
+	/**
+	 *  查询所有用户
+	 */
 	@Override
 	public List<Users> listUsers() {
 		try {
 			return usersMapper.listUsers();
 		} catch (Exception e) {
 			LOGGER.info("UsersServiceImpl    listUsers  查询异常----" + e.toString());
+			return null;
+		}
+	}
+
+	/**
+	 * 根据idIndex查询用户
+	 */
+	@Override
+	public Users selectByPrimaryKey(Integer idIndex) {
+		try {
+			return usersMapper.selectByPrimaryKey(idIndex);
+		} catch (Exception e) {
+			LOGGER.info("UsersServiceImpl    selectByPrimaryKey  查询异常----" + e.toString());
 			return null;
 		}
 	}

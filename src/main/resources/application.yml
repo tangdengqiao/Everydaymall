@@ -29,7 +29,7 @@ mybatis:
     type-aliases-package: com.everydaymall.Everydaymall.entity
 
 ##上传图片相关配置
-upLoadPath: A://uploads/
+upLoadPath: D://Project//EclipseProject//EclipsePersonal//Everydaymall//src//main//resources//static//upload/
 
 ##SQL日志打印相关配置
 logging:
